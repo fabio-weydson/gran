@@ -1,0 +1,21 @@
+<ion-view title="{{jogador.NomeUsual}}" id="jogador-ver">
+    <ion-content class="has-header">
+        
+      <span class="localdata">{{storage}}</span>
+          <div id="jogador">
+                 <div class="blade">
+                  <img ng-src="http://179.188.17.9/~fortalezaapp/webservice/thumbs.php?w=128&h=155&imagem=http://www.fortalezaec.net{{jogador.Foto}}"/> 
+                   <h2 class="title">{{jogador.NomeUsual}}</h2>
+                   <h3 class="subtitle">{{jogador.Idade}} Anos &bull; {{jogador.Posicao.Nome}} &bull; {{jogador.Chute}} &bull; {{jogador.Altura}}m &bull; {{jogador.Peso}}kg</h3>
+                   </div>
+                           
+          </div>
+          <div class="info padding">
+         
+ 			<p><b>Nome completo</b> {{jogador.NomeCompleto}}</p>
+			<p><b>Nascimento:</b> {{jogador.DataNascimento*1000 | date:'dd/MM/yyyy'}}</p>
+			<p><b>Naturalidade:</b> {{jogador.Naturalidade}} </p>
+			<p><b>Currículo:</b> {{jogador.ClubesAnteriores}} </p>
+            </div>
+    </ion-content>
+</ion-view>

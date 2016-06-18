@@ -1,0 +1,75 @@
+<ion-view title="Gran São João">
+    <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+    <a ng-click="sharePost()" menu-close class="button button-icon icon ion-share"></a>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+    <span class="localdata">{{storage}}</span>
+<!--             <img class="full-image" id="bannerapp" src="img/banner_app.jpg">
+ -->            <div ng-controller="DestaquesCtrl" id="slides">
+                <div class="meter">
+                    <span style="width: 0%"></span>
+                </div>
+				  <ion-slide-box on-slide-changed="slideChanged($index)" auto-play="true" does-continue="true" id="slidehome" delegate-handle="slidehome">
+				      <ion-slide ng-repeat="destaque in destaques | limitTo: 4"  >
+				        <a href="#/app/destaque/{{$index}}" ><h3>{{destaque.titulo}}</h3></a>
+				          <a href="#/app/destaque/{{$index}}" ><img img-cache ic-src="{{destaque.img}}" width="100%" style="100%;"></a>
+				      </ion-slide>
+				     
+				    </ion-slide-box>
+
+            </div>
+            <!--
+    <ion-slide-box on-slide-changed="slideChanged($index)" id="slidehome">
+      <ion-slide>
+        <h3>{{slides}}</h3>
+          <img src="img/foto1.jpg" style="width: 100%; max-width:500px">
+      </ion-slide>
+
+       <ion-slide>
+        <h3>Slide 2</h3>
+          <img src="img/foto1.jpg" style="width: 100%; max-width:500px">
+      </ion-slide>
+       <ion-slide>
+        <h3>Slide 3</h3>
+          <img src="img/foto1.jpg" style="width: 100%; max-width:500px">
+      </ion-slide>
+     
+    </ion-slide-box>-->
+   <!--  <div ng-controller="BannerController">
+     <div><a href="#/app/socio" class="banner" nav-clear menu-close><img class="full-image" src="img/banner_socio.jpg"></a></div>
+    </div> -->
+        <div class="list">
+
+            <a class="item" ng-class="{'item-thumbnail-left' : post.img.length}" href="#/app/posts/{{$index}}" ng-repeat="post in posts | limitTo: 6"  >
+                <img img-cache ic-src="{{post.img}}" with="150" ng-show="{{post.img}}">
+                
+                <h2>{{post.titulo}}</h2>
+                <h3>{{post.titulo}}</h3>
+                <p ng-bind-html="post.data * 1000 | date:'dd/MM/yy'"></p>
+            </a>
+
+        </div>
+       
+        <a  href="#/app/posts"  nav-clear menu-close class="button button-block button-positive" >
+        Mais notícias
+        </a>
+      
+    <!--
+        <div class="list">
+
+            <a ng-repeat="item in items" class="item item-icon-left" href="{{item.url}}">
+            <i class="icon {{item.icon}}"></i>
+            {{item.title}}
+            <span class="item-note">
+            {{item.note}}
+            </span>
+            </a>
+
+        </div>
+        -->
+       
+    </ion-content>
+</ion-view>

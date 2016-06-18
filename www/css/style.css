@@ -1,0 +1,819 @@
+/* Empty. Add your own CSS if you like */
+
+/* latin-ext */
+
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../font/Roboto-Regular-webfont.eot');
+    src: url('../font/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/Roboto-Regular-webfont.svg#Roboto') format('svg'),
+         url('../font/Roboto-Regular-webfont.woff') format('woff'),
+         url('../font/Roboto-Regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../font/SourceSansPro-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../font/SourceSansPro-Bold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Montserrat Bold';
+    src: url('../font/montserrat-bold-webfont.eot');
+    src: url('../font/montserrat-bold-webfont.eot?#iefix')format('embedded-opentype'),
+    url('../font/montserrat-bold-webfont.woff2')format('woff2'),
+    url('../font/montserrat-bold-webfont.woff')format('woff'),
+    url('../font/montserrat-bold-webfont.ttf')format('truetype'),
+    url('../font/montserrat-bold-webfont.svg#montserratbold')format('svg');
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../font/montserrat-regular-webfont.eot');
+    src: url('../font/montserrat-regular-webfont.eot?#iefix')format('embedded-opentype'),
+    url('../font/montserrat-regular-webfont.woff2')format('woff2'),
+    url('../font/montserrat-regular-webfont.woff')format('woff'),
+    url('../font/montserrat-regular-webfont.ttf')format('truetype'),
+    url('../font/montserrat-regular-webfont.svg#montserratregular')format('svg');
+    font-weight: 400;
+    font-style: normal
+}
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .button, input, textarea { font-family: 'Source Sans Pro', sans-serif; }
+.loading-container .loading {
+  font-size: 1.3em;
+}
+a { text-decoration: none; }
+
+img { max-width: 100%; height:auto;}
+
+.angular-google-map img { max-width: inherit!important; }
+
+.angular-google-map { width: 100%; height: 100%; }
+
+.scroll { height: 100%; }
+
+.noborder { border:none; }
+
+/* Specify an height via CSS for the map container: */
+.angular-google-map-container { height: 100%; }
+.menu-left .item:first-child {
+  border-top:none;
+} 
+.platform-ios .menu-left .scroll-content {
+    margin-top:20px !important;
+}
+.menu-left .item {
+  margin:0;
+  padding: 0;
+  border-bottom: 1px solid rgb(13, 74, 2);
+  /* border-top: 3px solid #1a6f29; */
+  color: #FFF;
+  font-size: 17px;
+  background: transparent;
+  /* background: rgba(35, 35, 35, 0.30); */
+  text-shadow: -1px 2px 0px #035426;
+  border-left: none;
+  font-family: "Montserrat";
+  border-right: none;
+}
+.menu-left {left: 0;/* background: url(../img/bg_menu.png); */background: rgb(2, 105, 46);}
+.menu-left .item-content {
+  font-size: 15px;
+  padding: 12px 0 12px 16px;
+  background: transparent;
+  font-family: "Montserrat Bold";
+  text-transform: uppercase;
+}
+
+.menu-left  .item-content.activated {
+  background: transparent;
+}
+.menu-left .sub-item a {
+     border-top: none;
+     /* background: #333333; */
+}
+
+.menu-left .sub-item {
+    /* border-top: none; */
+    /* background: #333333; */
+    text-shadow: none;
+}
+.bar.bar-stable { 
+    background: #cc0014 url(../img/bg_menu.jpg);
+
+}
+.bar .button,.bar.bar-stable .title  {
+    color: #585858 !important;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0px #FFF;
+}
+.item-thumbnail-left > img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left .item-content > img:first-child, .item-thumbnail-left .item-content .item-image {
+    outline: 2px solid #CCC;
+    background-color: #CCC;
+    min-height: 60px;
+}
+.list a.item {
+    background: linear-gradient(to bottom, #FFF 0%,#f7f7f7 100%);
+}
+.item h2 {
+    color: #666666;
+    font-size: 100%;
+    white-space: pre-line;
+}
+.item h3 {
+    color: #78848E;
+    font-size: 80%;
+    max-height: 30px;
+    white-space: pre-wrap;
+    overflow: hidden;
+    margin: 0;
+}
+p.ng-binding {
+    text-align: right;
+    color: #78848E;
+    line-height: normal;
+    font-size: 0.8em;
+}
+#noticia p.texto {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #CCC;
+
+}
+#noticia .button {
+    /* position: absolute; */
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+}
+div#slides {
+    position: relative;
+    /* overflow: hidden; */
+}
+a.item {
+    /* padding-bottom: 11px; */
+    min-height: 80px;
+}
+h2.title {
+    font-size: 1.4em;
+    color: #333;
+    font-weight: bold;
+    font-family: "Roboto";
+}
+
+.pane .scroll-content {
+    /* background: #f5f5f5; */
+}
+.menu-left .scroll-content {
+    /* background: rgba(35, 35, 35, 0.39); */;
+}
+.post-info {
+    color: #22A1CF;
+    margin: 10px 0;
+}
+.item h2 {
+    font-size: 100%;
+    margin-bottom: 2px;
+    color: #d9241d;
+    font-size: 0.9em;
+    font-weight: bold;
+    max-height: 30px;
+    font-family: "Roboto";
+}
+#slidehome h3 {
+    position: absolute;
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    color: #FFF;
+    text-shadow: 1px 1px 1px #000;
+    padding: 2%;
+    font-size: 1.3em;
+    bottom: 0;
+    font-family: "Roboto";
+    margin-bottom: 5px;
+}
+#slidehome {
+    margin-top: -4px;  margin-bottom: -4px;
+}
+#slidehome .slider-pager {
+    top: 0;
+}
+
+#slidehome .slider-pager .slider-pager-page {
+    color: #FFF;
+}
+.title.title-center {
+    font-family: "Montserrat Bold";
+    font-weight: normal;
+    font-size: 130%;
+    letter-spacing: 1px;
+}
+.menu-content.pane {
+    -webkit-box-shadow: -21px -17px 21px -17px #000000;
+    box-shadow: 9px 0px 10px 6px #333;
+}
+.row.produto h2 {
+    font-size: 118%;
+    font-weight: bold;
+    color: #666;
+}
+
+.produto p.ng-binding {
+    font-size: 93%;
+    line-height: 97%;
+    text-align: left;
+}
+.barra-titulo .item, .barra-titulo  .item-select select, .barra-titulo .input-label {
+    background: #011B3F;
+    color:#FFF;
+    text-transform:uppercase;
+}
+
+.item-thumbnail-left, .item-thumbnail-left .item-content {
+  padding-top: 6px;
+  padding-left: 97px;
+  min-height: 80px;
+  padding-bottom: 10px;
+  }
+
+  #jogadores-lista img {
+    max-width: 60px;
+    max-height: 100px;
+}
+
+#jogadores-lista .list a {
+    padding-left: 82px;
+}
+#jogador-ver h2.title  {
+    font-weight: 700;
+    text-align: left;
+    font-family: "Roboto";
+    font-size: 190%;
+    padding: 5px 0 0;
+    width: 100%;
+    text-shadow: 1px 1px 0px #000;
+    color: #FFF;
+    /* background: rgba(0,0,0,0.6); */
+    position: absolute;
+    padding-left: 165px;
+    bottom: 25px;
+}
+#jogador-ver p.ng-binding {
+    text-align: left;
+    font-size: 1em;
+    color: #777;
+    font-family: "Roboto";
+}
+#jogadores-lista .list a h2 {
+    font-size: 1em;
+}
+
+#jogadores-lista .list a h3 {
+    font-size: 0.9em;
+}
+
+#jogadores-lista .list a p {
+    font-size: 0.8em;
+}
+div#jogador .blade {
+    position: absolute;
+    width: 100%;
+    text-align: left;
+    height: 128px;
+    bottom: -35px;
+}
+
+div#jogador .blade img {
+    width: 128px;
+    /* border-radius: 100%; */
+    background: #F5F5F5;
+    bottom: -15px;
+    left: 20px;
+    position: absolute;
+    z-index: 99999;
+    /* box-shadow: 0px -1px 11px #000; */
+    border: 2px solid #FFF;
+}
+#tempo-real .data {
+    background: #174C8A;
+    float: left;
+    width: 30%;
+    text-align: center;
+    overflow: hidden;
+    min-height: 118px;
+}
+
+#tempo-real .placar {
+    background: #03244D;
+    height: 100%;
+    position: relative;
+    float: left;
+    font-family: "Roboto";
+    display: table;
+    width: 70%;
+}
+
+div#tempo-real {
+    min-height: 100px;
+    overflow: hidden;
+    background: #03244D;
+    color: #53AADD;
+    margin-top: -4px;
+}
+
+.barra-titulo {
+    clear: both;
+}
+
+#tempo-real .placar .time {
+    width: 50%;
+    float: left;
+    font-size: 0.8em;
+    line-height: 13px;
+    color: #FFF;
+    padding-top: 5%;
+    text-align: center;
+    padding-right: 28px;
+}
+
+#tempo-real .placar .time2 {
+    padding-left: 30px;
+    padding-right: 0;
+}
+
+#tempo-real .placar .evento {
+    text-align: center;
+    font-size: 1em;
+    clear:both;
+    padding-top: 0px;
+}
+#tempo-real .data div {
+    margin-top: 38%;
+    color: #FFF;
+}
+
+
+
+#tempo-real .pontos {
+    position: absolute;
+    color: #FFF;
+    font-size: 1.6em;
+    /* font-weight: bold; */
+    text-align: center;
+    width: 100%;
+    top: 45%;
+}
+#tempo-real .time img {
+    /* background: #FFF; */
+    padding: 2px;
+    border-radius: 3px;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+span.tempo img {
+    float: left;
+    margin-right: 5px;
+}
+
+
+
+.list .item-accordion {
+ background: rgba(0, 0, 0, 0.09);
+ transition: all 0.2s ease-out;
+}
+.list .item.item-accordion.ng-hide {
+  
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+#video p.ng-binding{
+  text-align: left;
+    font-size: 110%;
+}
+.banner {
+    display: block;
+  
+    overflow: hidden;
+    min-height: 50px;
+  clear: both;
+}
+#jogador {
+      background: url(../img/bg_jogador.jpg) 0 76%;
+      background-size: 165%;
+      height: 60%;
+      max-height: 200px;
+      /* box-shadow: 0px -1px 11px #000; */
+      box-sizing: content-box;
+      position: relative;
+      border-bottom: 2px solid #CCC;
+}
+#jogador-ver h3.subtitle {
+  font-weight: 700;
+  text-align: left;
+  font-size: 0.9em;
+  width: 100%;
+  color: #6C6C6C;
+  position: absolute;
+  padding-left: 165px;
+  bottom: -16px;
+}
+#jogador-ver .info {
+  /* padding: 4%; */
+  margin-top:50px;
+}
+#jogador-ver p b {
+    color: #666;
+    /* font-family: "Roboto"; */
+    display: block;
+}
+span.localdata {
+    background: #444;
+    min-height: 0px;
+    text-align: center;
+    color: #FFF;
+    line-height: 25px;
+    width: 100%;
+    display: block;
+}
+
+#fotos .thumb {
+    width: 33%;
+    float: left;
+    background-size: 150%;
+    background-position:center;
+    background-repeat:no-repeat;
+    outline:1px solid #FFF;
+}
+
+#fotos .thumb img {
+    width: 100%;
+    display:block;
+}
+#fotos .thumb:hover,#fotos .thumb:active {
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.4s ease-in;
+    -ms-transition: all 0.4s ease-in;
+    -o-transition: all 0.4s ease-in;
+    overflow:hidden;
+    transition: all 0.4s ease-in;
+
+}
+#fotos .thumb:hover img,#fotos .thumb:active img{
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.4s ease-in;
+    -ms-transition: all 0.4s ease-in;
+    -o-transition: all 0.4s ease-in;
+    transition: all 0.4s ease-in;
+    opacity: 0.8;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1) rotate(0.02deg);
+}
+
+div#fotos {
+    display: block;
+    overflow: hidden;
+}
+#lances a.item {
+    padding: 5px  !important;
+    min-height: 33px;
+    font-size: 1em;
+    white-space: initial;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+button.button-block {
+    margin: 0 !important;
+}
+.list {
+    margin-bottom: 0;
+}
+#noticia img {
+    width: 100%;
+    /* border-radius:6px; */
+}
+#noticia p.ng-binding {
+    font-size: 1em;
+    text-align: left;
+}
+div.lightbox {
+  display:none;
+  width: 100%;
+  /* max-width: 500px; */
+  padding: 3%;
+  top: 60px;
+  height: 100%;
+  z-index: 9;
+  position: absolute;
+  background: rgba(0,0,0,0.7);
+}
+
+
+div.lightbox b {
+    display: block;
+    text-align: left;
+    padding: 5px 10px 0 10px;
+    line-height: normal;
+    font-weight: normal;
+    font-size: 1em;
+    color: #666;
+    background: #f5f5f5;
+    float: left;
+    overflow: hidden;
+    vertical-align: baseline;
+}
+div.lightbox a {
+    color: #FFF;
+    text-align: center;
+    display: inline-block;
+    margin: 0 10%;
+}
+div.lightbox p.action {
+    font-size: 2.9em;
+    z-index: 9999;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 15px;
+}
+div.lightbox {
+    float: left;
+}
+
+#lightbox img {
+    height: auto;
+    float: left;
+    width: 100%;
+}
+@media (min-width:960px){
+    #lightbox img { 
+    max-width: 47%;
+    float:left;
+    margin: 5px;
+}
+    #lightbox b {
+      float:left;
+      font-size:1.3em !important;
+      display: block;
+      width: 50%;
+}
+#lightbox span {
+   padding-bottom: 0px !important;
+}
+}
+div.lightbox span {
+    display: block;
+    overflow: hidden;
+    background: #f5f5f5 url(../img/loading.gif) center  no-repeat;
+    border-radius: 8px;
+    padding-bottom: 10px;
+    box-sizing: content-box;
+    min-height: 62%;
+    width: 80%;
+    margin: 0 auto;
+}
+#video .media-container {
+  background: #000;
+}
+ 
+.meter {
+      height: 3px;
+      top: 0;
+      position: absolute; 
+      width: 100%;
+      z-index: 9999;
+    
+      background: rgba(0,0,0,0.7);
+}
+    .meter > span {
+      display: block;
+      height: 100%;         
+      background-color: #FFF;
+      position: relative;
+      overflow: hidden;
+    }
+    
+
+    .animate > span:after {
+      display: none;
+    }
+
+    @-webkit-keyframes move {
+        0% {
+           background-position: 0 0;
+        }
+        100% {
+           background-position: 50px 50px;
+        }
+    }
+
+    @-moz-keyframes move {
+        0% {
+           background-position: 0 0;
+        }
+        100% {
+           background-position: 50px 50px;
+        }
+    }
+    .nostripes > span > span, .nostripes > span:after {
+      -webkit-animation: none;
+      -moz-animation: none;
+      background-image: none;
+    }
+
+
+
+#jogos-lista .list .data {
+    float: left;
+    width: 15%;
+    text-align: center;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#jogos-lista .list a {
+    padding: 8px 5px;
+}
+
+#jogos-lista .list .data .dia {
+    display: block;
+    font-weight: bold;
+}
+
+#jogos-lista .list .data .hora {
+    font-size: 0.8em;
+}
+#jogos-lista .list .time {
+    float: left;
+    width: 45%;
+    position: relative;
+    text-align: right;
+    margin-right: 0;
+}
+
+
+#jogos-lista .list h2 {
+    overflow: hidden;
+    font-weight: bold;
+    max-height: 55px;
+    font-size: 0.8em;
+    line-height: 50px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+#jogos-lista .list .time b {
+  margin-left: 10%;}
+#jogos-lista .list .time2 b{
+  margin-right: 10%;
+  margin-left: 0;
+} 
+
+#jogos-lista .list .time2 {
+    float: right;
+    text-align: left;
+    margin-left: 0;
+}
+#jogos-lista .list .time img {
+    width: 50px;
+    float: left;
+    margin-right: 3px;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0px;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
+#jogos-lista .list .time2 img {
+    margin-right:0;
+    margin-left:3px;
+    right: 0;
+    left: initial;
+}
+#construcao {
+    background:url(../img/bg_jogador.jpg);
+    background-size:cover;
+}
+#construcao .msg {
+    width:100%;
+    background:rgba(0,0,0,0.5);
+    height:100%;
+    padding-top: 20%;
+    text-align: center;
+}
+
+#construcao .msg img {
+    width: 50%;
+}
+#construcao .msg h3 {
+      font-family: "Montserrat Bold";
+  font-weight: normal;
+  font-size: 2em;
+  color:#FFF;
+  text-transform:uppercase;
+  text-shadow:1px 2px 3px #000;
+  letter-spacing: 1px;
+}
+#textos .texto {
+    text-align: justify;
+    font-size: 1.0em;
+}
+#textos select {
+    width: 100%;
+    padding: 9px;
+    color: #FFF;
+    border-radius: 0;
+    font-size: 1.2em;
+    border: none;
+    font-weight: bold;
+    background: #223B5A url(../img/a_down_32.png) no-repeat 98%;
+    -webkit-appearance: none;
+}
+#textos h1 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.4em;
+    color: #666;
+    text-align: left;
+}
+
+#textos h2 {
+    margin: 0;      
+    font-size: 1.2em;
+    color: #133D6D;
+    font-weight: bold;
+    text-align: left;
+}
+#textos h1.title {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-size: 1.6em;
+    border-bottom: 1px solid #CCC;
+    color: #223B5A;
+}
+#textos a {
+    color: #C50A0A;
+}
+
+#tempo-real .data span {
+    line-height: 13px;
+    display: block;
+    color: #53AADD;
+    font-size: 0.9em;
+}
+
+#lances a.item {
+    display: 
+    
+    -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+em.hash_tag {
+    color: #5791D0 !important;
+    margin: 0;
+    padding: 0;
+}
+.slider-slide {
+  min-height: 150px;
+  overflow:hidden;
+  }
+
+  .iframe-wrapper iframe {
+   width: 100%;
+   height: 100%;
+ }
+ a.copy {
+    color: #D8D8D8;
+    text-shadow: 1px 1px 1px #000;
+    font-size: 9px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: left;
+    left: 9px;
+    text-transform: uppercase;
+}
+p.ng-binding span {
+    color: #78848E !important;
+    text-shadow: 1px 1px 1px #FFF;
+}

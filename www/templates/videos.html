@@ -1,0 +1,22 @@
+<ion-view title="Videos">
+ <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+     <a  ng-click="loadURL('http://m.youtube.com/user/reginaldosilva697')" class="button button-icon icon ion-social-youtube"></a>
+    </ion-nav-buttons>  
+    <ion-content class="has-header" locking="true">
+    <span class="localdata">{{storage}}</span>
+          <div class="list">
+            <a class="item" ng-class="{'item-thumbnail-left' : video.snippet.thumbnails.default.url}" href="#/app/video/{{$index}}" ng-repeat="video in videos | limitTo: paginationLimit()" >
+                <img ng-src="{{video.snippet.thumbnails.default.url}}">
+                
+                <h2>{{video.snippet.title}}</h2>
+                <h3>{{video.snippet.description}}...</h3>
+       </a>
+        </div>
+        <button class="button button-block button-positive" ng-show="hasMoreItems()" ng-click="showMoreItems()" >
+        Exibir mais
+        </button>
+    </ion-content>
+</ion-view>

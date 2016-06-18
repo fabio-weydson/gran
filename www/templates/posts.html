@@ -1,0 +1,30 @@
+﻿<ion-view title="NOTÍCIAS">
+ <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="loadData()"><i class="icon ion-loop"></i></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header" overflow-scroll="true" id="noticias-lista">
+        
+       <span class="localdata">{{storage}}</span>
+      
+        <div class="list">
+
+            <a class="item" ng-class="{'item-thumbnail-left' : post.img.length}" ng-click="#/app/posts/{{$index}}" ng-repeat="post in posts | limitTo: paginationLimit()" >
+                <img ng-src="{{post.img}}" with="150" ng-show="{{post.img.length}}" >
+                
+                <h2><span ng-bind-html="post.data * 1000 | date:'dd/MM/yy'"></span> - {{post.titulo}}</h2>
+                <h3>{{post.subtitulo}}</h3>
+<!--                 <p ng-bind-html="post.DataHora * 1000 | date:'dd/MM/yy'"></p>
+ -->            </a>
+
+        </div>
+        
+        <button class="button button-block button-positive" ng-show="hasMoreItems()" ng-click="showMoreItems()" >
+        Exibir mais
+        </button>
+
+       
+    </ion-content>
+</ion-view>

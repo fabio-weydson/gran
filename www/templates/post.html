@@ -1,0 +1,27 @@
+<ion-view title="{{post.titulo}}">
+
+    <ion-nav-buttons side="right">
+    <a class="button button-clear" ng-click="sharePost()"><i class="icon ion-share"></i></a>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header" id="noticia">
+        <span class="localdata">{{storage}}</span>
+        <span ng-show="{{post.img.length}}"><img ng-src="{{post.img}}"/></span>
+        <div class="padding">
+<!--              <span  ng-show="{{post.Assunto.Nome.length}}">{{post.Assunto.Nome}}</span>
+ -->            <h2 class="title">{{post.titulo}}</h2>
+            <div  class="post-info">
+            Publicado em {{post.data * 1000 | date:'dd/MM/yy '+as+' H:m'}}<br/>
+            </div>
+            <p ng-bind-html="post.texto" class="texto"></p>
+
+<!--             <p><button class="button icon-left ion-share button-outline button-positive" ng-click="sharePost()">Compartilhar</button></p>
+ -->
+           
+        </div>
+ <a class="button button-full button-positive" href="#/app/noticia/{{post.postId}}">  
+            Veja a notícia completa
+            </a>
+
+    </ion-content>
+</ion-view>
