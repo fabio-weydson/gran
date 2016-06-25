@@ -25,10 +25,10 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
     window.plugins.Shortcut.CreateShortcut("Clube Gran São João", successfunc, failfunc);
     localStorage.setItem('shortcut', true);
     function successfunc(){
-      alert('Um atalho foi adicionado a sua tela inicial.')
+      console.log('Um atalho foi adicionado a sua tela inicial.')
     }
     function failfunc(){
-       alert('Falha ao criar atalho. Adicione manualmente.')
+       console.log('Falha ao criar atalho. Adicione manualmente.')
     }
     }
 
