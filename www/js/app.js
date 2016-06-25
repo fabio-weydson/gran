@@ -1,5 +1,3 @@
-// Mobionic: Mobile Ionic Framework
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'mobionicApp' is the name of this angular module (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -9,9 +7,6 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
      var push = new Ionic.Push({
       "debug": true
     });
-
-     document.addEventListener("deviceready", onDeviceReady, false);
-
 
     push.register(function(token) {
       console.log("Device token:",token.token);
@@ -25,6 +20,7 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(false);
     }
+    
     if (!localStorage.getItem('shortcut')) {
     window.plugins.Shortcut.CreateShortcut("Clube Gran São João", successfunc, failfunc);
     localStorage.setItem('shortcut', true);
@@ -34,7 +30,8 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
     function failfunc(){
        alert('Falha ao criar atalho. Adicione manualmente.')
     }
-   } 
+    }
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     // if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -322,28 +319,28 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
 });
 
   function StrToURL(string) {
-	var mapaAcentosHex 	= {
-		a : /[\xE0-\xE6]/g,
-		A : /[\xC0-\xC6]/g,
-		e : /[\xE8-\xEB]/g,
-		E : /[\xC8-\xCB]/g,
-		i : /[\xEC-\xEF]/g,
-		I : /[\xCC-\xCF]/g,
-		o : /[\xF2-\xF6]/g,
-		O : /[\xD2-\xD6]/g,
-		u : /[\xF9-\xFC]/g,
-		U : /[\xD9-\xDC]/g,
-		c : /\xE7/g,
-		C : /\xC7/g,
-		n : /\xF1/g,
-		N : /\xD1/g,
-		'-' : /\s/g
-	};
+  var mapaAcentosHex  = {
+    a : /[\xE0-\xE6]/g,
+    A : /[\xC0-\xC6]/g,
+    e : /[\xE8-\xEB]/g,
+    E : /[\xC8-\xCB]/g,
+    i : /[\xEC-\xEF]/g,
+    I : /[\xCC-\xCF]/g,
+    o : /[\xF2-\xF6]/g,
+    O : /[\xD2-\xD6]/g,
+    u : /[\xF9-\xFC]/g,
+    U : /[\xD9-\xDC]/g,
+    c : /\xE7/g,
+    C : /\xC7/g,
+    n : /\xF1/g,
+    N : /\xD1/g,
+    '-' : /\s/g
+  };
 
-	for ( var letra in mapaAcentosHex ) {
-		var expressaoRegular = mapaAcentosHex[letra];
-		string = string.replace( expressaoRegular, letra );
-	}
+  for ( var letra in mapaAcentosHex ) {
+    var expressaoRegular = mapaAcentosHex[letra];
+    string = string.replace( expressaoRegular, letra );
+  }
 
-	return string;
+  return string;
 }
