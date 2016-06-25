@@ -19,12 +19,12 @@
 
     <div ng-repeat="item in items">
       <div ng-if="item.url">
-                  <ion-item nav-clear menu-close href="{{item.url}}">
+                  <ion-item nav-clear menu-close ng-href="{{item.url}}">
                 <i class="icon {{item.icon}}"></i>&nbsp;&nbsp;{{item.title}}
             </ion-item>
             </div>
       <div ng-if="!item.url" >
- <ion-item ng-click="toggleGroup(item)" ng-class="item-content" href="#">
+ <ion-item ng-click="toggleGroup(item)" ng-class="item-content" ng-href="{{item.url}}">
                 <i class="icon" ng-class="isGroupShown(item) ? '{{item.icon}}' : '{{item.icon}}'"></i>&nbsp;&nbsp;{{item.title}}
             </ion-item>
             <ion-item  ng-class="isGroupShown(item) ? 'sub-item item-accordion' : ''"

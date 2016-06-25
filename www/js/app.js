@@ -11,9 +11,7 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
     });
 
      document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-   alert("navigator.geolocation works well");
-}
+
 
     push.register(function(token) {
       console.log("Device token:",token.token);
@@ -22,6 +20,21 @@ function onDeviceReady() {
      
     ImgCache.$init();
     navigator.splashscreen.hide();
+
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(false);
+    }
+    if (!localStorage.getItem('shortcut')) {
+    window.plugins.Shortcut.CreateShortcut("Clube Gran São João", successfunc, failfunc);
+    localStorage.setItem('shortcut', true);
+    function successfunc(){
+      alert('Um atalho foi adicionado a sua tela inicial.')
+    }
+    function failfunc(){
+       alert('Falha ao criar atalho. Adicione manualmente.')
+    }
+  }
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     // if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -294,12 +307,12 @@ function onDeviceReady() {
         }
       }
     })
-    .state('app.ingressos', {
-      url: "/ingressos",
+    .state('app.notificacoes', {
+      url: "/notificacoes",
       views: {
         'menuContent' :{
-          //templateUrl: "templates/ingressos.html"  
-           templateUrl: "templates/construcao.html"
+           templateUrl: "templates/notificacoes.html",
+           controller: 'NotificacoesCtrl'
                }
       }
     })

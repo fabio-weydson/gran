@@ -1,0 +1,27 @@
+<ion-view title="Notificações">
+ <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+    </ion-nav-buttons>
+    <ion-content class="has-header" locking="true">
+    <span class="localdata">{{storage}}</span>
+        <ul class="list">
+
+  <li class="item item-toggle">
+     Receber Notificações?
+     <label class="toggle toggle-balanced">
+       <input type="checkbox" checked  ng-click="ativaPush()">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+</ul>
+         <ion-infinite-scroll ng-show="hasMoreItems()" 
+    on-infinite="showMoreItems()"
+    distance="1%">
+  </ion-infinite-scroll>
+    </ion-content>
+    </ion-content>
+</ion-view>
