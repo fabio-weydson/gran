@@ -26,29 +26,6 @@
   font-weight: 600;
 }
 
-@font-face {
-    font-family: 'Montserrat Bold';
-    src: url('../font/montserrat-bold-webfont.eot');
-    src: url('../font/montserrat-bold-webfont.eot?#iefix')format('embedded-opentype'),
-    url('../font/montserrat-bold-webfont.woff2')format('woff2'),
-    url('../font/montserrat-bold-webfont.woff')format('woff'),
-    url('../font/montserrat-bold-webfont.ttf')format('truetype'),
-    url('../font/montserrat-bold-webfont.svg#montserratbold')format('svg');
-    font-weight: 400;
-    font-style: normal
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    src: url('../font/montserrat-regular-webfont.eot');
-    src: url('../font/montserrat-regular-webfont.eot?#iefix')format('embedded-opentype'),
-    url('../font/montserrat-regular-webfont.woff2')format('woff2'),
-    url('../font/montserrat-regular-webfont.woff')format('woff'),
-    url('../font/montserrat-regular-webfont.ttf')format('truetype'),
-    url('../font/montserrat-regular-webfont.svg#montserratregular')format('svg');
-    font-weight: 400;
-    font-style: normal
-}
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .button, input, textarea { font-family: 'Source Sans Pro', sans-serif; }
 .loading-container .loading {
@@ -56,7 +33,7 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .button, input, text
 }
 a { text-decoration: none; }
 
-img { max-width: 100%; height:auto;}
+img {max-width: 100%;height:auto;}
 
 .angular-google-map img { max-width: inherit!important; }
 
@@ -78,22 +55,21 @@ img { max-width: 100%; height:auto;}
   margin:0;
   padding: 0;
   border-bottom: 1px solid rgb(13, 74, 2);
-  /* border-top: 3px solid #1a6f29; */
+  border-top: 0px solid #1d672e;
   color: #FFF;
   font-size: 17px;
   background: transparent;
   /* background: rgba(35, 35, 35, 0.30); */
-  text-shadow: -1px 2px 0px #035426;
+  text-shadow: -1px 1px 0px #035426;
   border-left: none;
-  font-family: "Montserrat";
   border-right: none;
 }
-.menu-left {left: 0;/* background: url(../img/bg_menu.png); */background: rgb(2, 105, 46);}
+.menu-left {left: 0;background: #348802 url(../img/bg_sidemenu.jpg);/* background: #348802; */background-size: 130% auto;}
 .menu-left .item-content {
-  font-size: 15px;
+  font-size: 16px;
   padding: 12px 0 12px 16px;
   background: transparent;
-  font-family: "Montserrat Bold";
+  font-family: "Fredoka One";
   text-transform: uppercase;
 }
 
@@ -110,22 +86,23 @@ img { max-width: 100%; height:auto;}
     /* background: #333333; */
     text-shadow: none;
 }
-.bar.bar-stable { 
+.bar.bar-stable {
     background: #cc0014 url(../img/bg_menu.jpg);
-
+    background: #348802;
 }
 .bar .button,.bar.bar-stable .title  {
-    color: #585858 !important;
+    color: #FFF !important;
     text-transform: uppercase;
-    text-shadow: 1px 1px 0px #FFF;
+    text-shadow: 1px 1px 0px #2c7301;
 }
 .item-thumbnail-left > img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left .item-content > img:first-child, .item-thumbnail-left .item-content .item-image {
-    outline: 2px solid #CCC;
-    background-color: #CCC;
-    min-height: 60px;
+    outline: 2px solid #FFF;
+    background-color: #FFF;
+    height: 60px;
 }
 .list a.item {
-    background: linear-gradient(to bottom, #FFF 0%,#f7f7f7 100%);
+    /* background: linear-gradient(to bottom, #FFF 0%,#f7f7f7 100%); */
+    background: #f7f7f7;
 }
 .item h2 {
     color: #666666;
@@ -178,20 +155,28 @@ h2.title {
     /* background: #f5f5f5; */
 }
 .menu-left .scroll-content {
-    /* background: rgba(35, 35, 35, 0.39); */;
+    /* background: rgba(35, 35, 35, 0.39); */
 }
 .post-info {
-    color: #22A1CF;
+    color: #348802;
     margin: 10px 0;
 }
 .item h2 {
-    font-size: 100%;
     margin-bottom: 2px;
-    color: #d9241d;
-    font-size: 0.9em;
+    position: relative;
+    font-size: 0.8em;
     font-weight: bold;
-    max-height: 30px;
     font-family: "Roboto";
+    border-left: 3px solid #348802;
+    text-shadow: 1px 1px 0px #FFF;
+    max-height: inherit;
+    padding: 8px 0 6px 8px;
+    height: 66px;
+    box-sizing: border-box;
+    line-height: 19px;
+    margin: 0;
+    color: #333;
+    text-transform: uppercase;
 }
 #slidehome h3 {
     position: absolute;
@@ -209,16 +194,16 @@ h2.title {
     margin-top: -4px;  margin-bottom: -4px;
 }
 #slidehome .slider-pager {
-    top: 0;
+    top: 5px;
 }
 
 #slidehome .slider-pager .slider-pager-page {
     color: #FFF;
 }
 .title.title-center {
-    font-family: "Montserrat Bold";
+    font-family: "Fredoka One";
     font-weight: normal;
-    font-size: 130%;
+    font-size: 109%;
     letter-spacing: 1px;
 }
 .menu-content.pane {
@@ -241,7 +226,12 @@ h2.title {
     color:#FFF;
     text-transform:uppercase;
 }
-
+.item-select select {
+    max-width: 95%;
+    text-align: left;
+    width: 95%;
+    direction: ltr;
+}
 .item-thumbnail-left, .item-thumbnail-left .item-content {
   padding-top: 6px;
   padding-left: 97px;
@@ -650,7 +640,8 @@ div.lightbox span {
 }
 
 #jogos-lista .list a {
-    padding: 8px 5px;
+    padding: 6px 5px;
+    min-height: 42px;
 }
 
 #jogos-lista .list .data .dia {
@@ -673,12 +664,12 @@ div.lightbox span {
 #jogos-lista .list h2 {
     overflow: hidden;
     font-weight: bold;
-    max-height: 55px;
+    max-height: 42px;
     font-size: 0.8em;
-    line-height: 50px;
-    text-align: center;
-    margin: 0;
+    line-height: 42px;
+    text-align: left;
     padding: 0;
+    padding-left: 10px;
 }
 #jogos-lista .list .time b {
   margin-left: 10%;}
@@ -725,7 +716,7 @@ div.lightbox span {
     width: 50%;
 }
 #construcao .msg h3 {
-      font-family: "Montserrat Bold";
+      font-family: "Fredoka One";
   font-weight: normal;
   font-size: 2em;
   color:#FFF;
@@ -816,4 +807,90 @@ em.hash_tag {
 p.ng-binding span {
     color: #78848E !important;
     text-shadow: 1px 1px 1px #FFF;
+}
+#agenda-lista .item h2 {
+    max-height: inherit;
+    margin: 0;
+}
+
+#agenda-lista .item h2 span {
+    font-size: 32px;
+    position: relative;
+    color: #000;
+    font-weight: bold;
+}
+.item h2 span {
+    display: block;
+    text-align: left;
+    font-size: 11px;
+    color: #666;
+    /* position: absolute; */
+    font-weight: normal;
+    bottom: 0;
+    right: 0;
+    text-transform: capitalize;
+}
+a.button {
+    margin: 0 !important;
+}
+a.button {
+    margin: 0 !important;
+}
+#logo {
+    background: url(../img/logo.png) no-repeat center;
+    height: 20%;
+}
+div#campeonatos {
+    background: url('../img/futebol.jpg');
+    height: 100%;
+    background-size: cover;
+}
+
+.local {
+  border: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  background: #FFF;
+}
+.local span{
+  border: none;
+  font-weight: bold;
+ background: rgba(255,255,255,0.4);
+  width: 20%;
+
+}
+.local .item-input {
+     border: none;
+    float: left;
+    width: 100%;
+    padding-right: 41px;
+    position: absolute
+}
+.local .icon{
+     font-size: 30px;
+    line-height: 47px;
+    padding: 0 11px;
+    position: absolute;
+    right: 0;
+    z-index: 999;
+}
+.mapa {
+
+  width: 100%;
+  height: 70%;
+}
+.mapa_full {
+  margin-top: 50px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.btn-rota {
+  position: absolute;
+  bottom: 0%;
+}
+.btn-rota.bottom {
+  position: relative;
 }

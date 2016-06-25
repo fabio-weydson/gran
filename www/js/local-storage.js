@@ -17,7 +17,7 @@ angular.module('mobionicApp.storage', [])
     }
   }
 })
-.factory('ProximosJogosStorage', function() {
+.factory('JogosStorage', function() {
   return {
     all: function() {
       var jogos = window.localStorage['jogos'];
@@ -135,6 +135,23 @@ angular.module('mobionicApp.storage', [])
     },
     clear: function() {
       window.localStorage.removeItem('posts');
+    }
+  }
+})
+.factory('AgendaStorage', function() {
+  return {
+    all: function() {
+      var eventos = window.localStorage['eventos'];
+      if(eventos) {
+        return angular.fromJson(eventos);
+      }
+      return {};
+    },
+    save: function(eventos) {
+      window.localStorage['eventos'] = angular.toJson(eventos);
+    },
+    clear: function() {
+      window.localStorage.removeItem('eventos');
     }
   }
 })

@@ -1,0 +1,23 @@
+<ion-view title="{{evento.titulo}}">
+
+    <ion-nav-buttons side="right">
+    <a class="button button-clear" ng-click="shareevento()"><i class="icon ion-share"></i></a>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header" id="noticia">
+        <span class="localdata">{{storage}}</span>
+        <span ng-show="{{evento.img.length}}"><img ng-src="{{evento.img_full}}"/></span>
+        <div class="padding">
+<!--              <span  ng-show="{{evento.Assunto.Nome.length}}">{{evento.Assunto.Nome}}</span>
+ -->            <h2 class="title">{{evento.titulo}}</h2>
+            <div  class="evento-info">
+            Publicado em {{evento.data * 1000 | date:'dd/MM/yy '+as+' H:m'}}<br/>
+            </div>
+            <p ng-bind-html="evento.texto" class="texto"></p>
+
+<!--             <p><button class="button icon-left ion-share button-outline button-positive" ng-click="shareevento()">Compartilhar</button></p>
+ -->
+           
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,33 @@
+<ion-view title="Contatos">
+   <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+     <button class="button button-icon icon ion-pinpoint " ng-click="initialize()"></button>
+    </ion-nav-buttons>  
+    <ion-content  class="has-header" locking="true">
+   
+     <!--Text Boxes for From Source and To Destination to get the directions-->
+       
+              <div class="list local">
+              
+               <label class="item item-input ">
+    <span class="input-label">Seu local:</span>
+    <input type="text" id="partida" ng-model="start" ng-value="start"  placeholder="{{start}}">
+               
+  </label> <a class="icon ion-ios-search-strong positive" ng-click="initialize()"></a>
+            </div>
+        <div id="map" data-tap-disabled="true" ng-class="rota ? 'mapa' : 'mapa_full'"></div>
+        <button  class="button button-full button-dark btn-rota" ng-class="rota ? 'bottom' : 'botton'" ng-click="getDir()" style="margin:0" type="submit"><span class="icon ion-ios-navigate-outline"></span> TRAÇAR ROTA</button>
+
+         <div class="padding">
+     <div id="directions" ng-show="rota" ></div>
+        
+       </div>
+
+      
+
+    
+   </div>
+    </ion-content>
+</ion-view>

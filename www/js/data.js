@@ -45,7 +45,7 @@ angular.module('mobionicApp.data', [])
     data.items = [
         {
             title: 'Home',
-            icon: 'ion-ios7-home',
+            icon: 'ion-ios-home',
             url: '#/app'
         },
         {
@@ -60,7 +60,7 @@ angular.module('mobionicApp.data', [])
         },
         {
             title: 'Noticias',
-            icon: 'ion-ios7-paper-outline',
+            icon: 'ion-ios-paper-outline',
             url: '#/app/posts'
         },
          {
@@ -86,56 +86,30 @@ angular.module('mobionicApp.data', [])
                 ] 
         },
          {
-            title: 'Partidas',
-            icon:"ion-ios7-football",
-            subMenu: [
-                {
-                    title: "Tempo Real",
-                    url: '#/app/tempo_real',
-                    icon:"ion-monitor",
-                },
-                {
-                    title: "Proximos Jogos",
-                    url: '#/app/proximos_jogos',
-                    icon:"ion-calendar",
-                }]  
-        },
-        {
             title: 'Agenda',
-            icon: 'ion-ios7-cart',
+            icon: 'ion-android-calendar',
             url: '#/app/agenda'
         },
-        {
-            title: 'Mais',
-            icon: 'ion-more',
-             subMenu: [
-                {
-                    title: "Newsletter",
-                    url: '#/app/member',
-                    icon:"ion-paper-airplane",
-                },
+         {
+            title: 'Campeonatos',
+            icon:"ion-ios-football",
+            url: '#/app/jogos'
+        },
                 {
                     title: "Contatos",
                     url: '#/app/contact',
-                    icon:"ion-ios7-email",
+                    icon:"ion-ios-email",
+                },
+                  {
+                    title: "Como Chegar",
+                    url: '#/app/map',
+                    icon:"ion-ios-location",
                 },
                 {
                     title: "Ajustes",
                     url: '#/app/settings',
-                    icon:"ion-ios7-gear",
-                },
-        //          {
-        //     title: 'Plugins',
-        //     icon: 'ion-code',
-        //     url: '#/app/plugins'
-        // },
-        ]  
-        },
-        // {
-        //     title: 'Elements',
-        //     icon: 'ion-code',
-        //     url: '#/app/elements'
-        // }
+                    icon:"ion-ios-gear",
+                }
         
     ];
 
@@ -236,7 +210,7 @@ angular.module('mobionicApp.data', [])
 .factory('PostsData', function($http, $q, PostsStorage) {
 
     
-    var json = 'http://gran.com.br/site/services/feed.php?conteudo=noticias&limit=20';
+    var json = 'http://gran.com.br/site/services/feed.php?conteudo=noticias&limit=100';
 
     /* Set your URL as you can see in the following example */
     // var json = 'YourWordpressURL/?json=get_recent_posts';
@@ -279,11 +253,17 @@ angular.module('mobionicApp.data', [])
 })
 
 // Posts Data: JSON Wordpress Posts configuration
-.factory('ProximosJogosData', function($http, $q, ProximosJogosStorage) {
+.factory('AgendaData', function($http, $q, AgendaStorage) {
 
     
-    var json = 'http://www.fortalezaec.net/Json/Jogos?categoriaId=00e967dfc6f74ca5b523546ce9cce0f2&ano=2016&ordem=asc';
-console.log(json);
+    var json = 'http://gran.com.br/site/services/feed.php?conteudo=agenda&limit=100';
+
+    /* Set your URL as you can see in the following example */
+    // var json = 'YourWordpressURL/?json=get_recent_posts';
+
+    /* With user-friendly permalinks configured */
+    // var json = 'YourWordpressURL/api/get_recent_posts';
+
     var deferred = $q.defer();
     var promise = deferred.promise;
     var data = [];
@@ -295,13 +275,53 @@ console.log(json);
     // when the response is available.
     success(function(d) {
         data = d.Model;
-        ProximosJogosStorage.save(data);
+        AgendaStorage.save(data);
         deferred.resolve();
     }).
     // called asynchronously if an error occurs
     // or server returns response with an error status.
     error(function() {
-        data = ProximosJogosStorage.all();
+        data = AgendaStorage.all();
+        deferred.reject();
+    });
+
+    return promise;
+
+    };
+
+    service.getAll = function() { return data; };
+
+    service.get = function(eventoId) { 
+        return data[eventoId];
+    };
+
+    return service;
+})
+
+// Posts Data: JSON Wordpress Posts configuration
+.factory('JogosData', function($http, $q, JogosStorage) {
+
+    
+    var json = 'http://gran.com.br/site/services/feed.php?conteudo=campeonatos';
+
+    var deferred = $q.defer();
+    var promise = deferred.promise;
+    var data = [];
+    var service = {};
+
+    service.async = function() {
+    $http({method: 'GET', url: json, timeout: 5000}).
+    // this callback will be called asynchronously
+    // when the response is available.
+    success(function(d) {
+        data = d.Model;
+        JogosStorage.save(data);
+        deferred.resolve();
+    }).
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+    error(function() {
+        data = JogosStorage.all();
         deferred.reject();
     });
 
@@ -312,104 +332,8 @@ console.log(json);
     service.getAll = function() { return data; };
 
     service.get = function(postId) { 
-        return data.Noticias[postId];
+        return data.Jogos[postId];
     };
-
-    return service;
-})
-// Posts Data: JSON Wordpress Posts configuration
-.factory('TempoRealData', function($http, $q, TempoRealStorage) {
-
-    
-    var json = 'http://www.fortalezaec.net/Json/UltimoJogo?categoriaId=00e967dfc6f74ca5b523546ce9cce0f2';
-
-    var deferred = $q.defer();
-    var promise = deferred.promise;
-    var data = [];
-    var service = {};
-
-    service.async = function() {
-    $http({method: 'GET', url: json, timeout: 5000}).
-    // this callback will be called asynchronously
-    // when the response is available.
-    success(function(d) {
-
-        data = d.Model;
-       //  var dataJogoFull = d.channel.item.data;
-        
-       //  var dataJogo = dataJogoFull.replace(" ", "<br/>as ");
-       // 	data['data'] = dataJogo;
-       //  var time1  = d.channel.item.dadosevento.time1.trim();
-       // 	var escudo1 = StrToURL(time1);
-
-      	// data['escudo_1'] = 'https://apidadoscampeonatos.gazetaesportiva.net/uploads/equipe/imagem/'+escudo1.toLowerCase()+'.png';
-      	// var time2  = d.channel.item.dadosevento.time2.trim();
-       //  var escudo2 = StrToURL(time2);
-      	// data['escudo_2'] = 'https://apidadoscampeonatos.gazetaesportiva.net/uploads/equipe/imagem/'+escudo2.toLowerCase()+'.png';
-
-
-        TempoRealStorage.save(data);
-        deferred.resolve();
-        localStorage.setItem('hora_jogo', data.DataHora);
-    }).
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-    error(function() {
-        data = TempoRealStorage.all();
-        deferred.reject();
-    });
-
-    return promise;
-
-    };
-
-    service.getAll = function() { return data; };
-
-    service.get = function(tempoId) { 
-	    return data[tempoId];
-	};
-
-    return service;
-})
-.factory('LancesData', function($http, $q, LancesStorage) {
-    var hora_jogo = localStorage.getItem('hora_jogo');
-    var hora_jogo
-    var hora_before = hora_jogo -= 60 * 60;
-    var hora_depois = hora_jogo += 180 * 60;
-    
-    var json = 'https://graph.facebook.com/v2.4/FortalezaOficial/posts?fields=picture,full_picture,message,created_time&since='+hora_before+'&until='+hora_depois+'&access_token=CAAWZCKW9JPX4BADD93kqvvW4wMSPAtcMe1O92DXWINQZCbkBqLQ9OiTx1sRtRwhIZAlmNiZCcjI76SMr5pOHoJVGTY1R0ujUQMaQZBH65GTHLtIsb0IpkN8S6BZA1vXz6afhwdUJLXZAlJufIvsWW1STDHs9AFe0WtVXQo7nLcZBESnhqOBYdG7wFGIqZAyuyYSp2kD1ZAe7ZCfrgZDZD';
-    
-    var deferred = $q.defer();
-    var promise = deferred.promise;
-    var data = [];
-    var service = {};
-
-    service.async = function() {
-    $http({method: 'GET', url: json, timeout: 5000}).
-    // this callback will be called asynchronously
-    // when the response is available.
-    success(function(d) {
-        // console.log(d.data);
-		data = d.data;
-		LancesStorage.save(data);
-        deferred.resolve();
-    }).
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-    error(function() {
-        data = LancesStorage.all();
-        deferred.reject();
-    });
-
-    return promise;
-
-    };
-
-    service.getAll = function() { return data; };
-
-    service.get = function(lanceId) { 
-	    return data[lanceId];
-	};
 
     return service;
 })

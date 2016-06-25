@@ -1,0 +1,33 @@
+﻿<ion-view title="CAMPEONATOS">
+ <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+   
+    </ion-nav-buttons>
+    <ion-content class="has-header" overflow-scroll="true" id="jogos-lista">
+        
+       <span class="localdata">{{storage}}</span>
+      
+        <div class="list">
+      <div class="barra-titulo">
+        <label class="item item-select">
+          <select  ng-model="campeonatoSelect" ng-change="changedValue(campeonatoSelect)"  ng-options="campeonato.name for campeonato in campeonatos track by campeonato.id" >
+             <option ng-selected="true" value="">Selecione</option>
+          </select>
+        </label>
+      </div>
+      <a class="item item-icon-right" ng-href="http://gran.com.br/site/arquivos/{{jogo.arquivo}}" onclick="window.open(this.href, '_blank', 'location=no'); return false;" ng-if="campeonatoSelect" ng-repeat="jogo in jogos  | filter:getFilter()" >    
+<!--                         <a class="item" href="#" ng-repeat="jogo in jogos | limitTo: paginationLimit() | orderObjectBy:'DataHora':true" >      
+ -->  
+                <div class="data"><!-- <span ng-bind-html="jogo.DataHora * 1000 | date:'dd/MM/yy'"></span> -->
+                    <span class="dia">{{jogo.data * 1000 | date:'dd/MM'}}</span>
+                    <span class="hora">{{jogo.data * 1000 | date:'H:mm'}}h</span>
+                </div>          
+                <h2>{{jogo.titulo}}</h2>
+             <i class="icon ion-ios-arrow-forward"></i>
+        </a>
+        </div>
+        <div class='full-image' id="campeonatos" ng-hide="campeonatoSelect"></div>
+    </ion-content>
+</ion-view>

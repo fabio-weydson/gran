@@ -6,7 +6,7 @@
 
     <ion-content class="has-header" id="noticia">
         <span class="localdata">{{storage}}</span>
-        <span ng-show="{{post.img.length}}"><img ng-src="{{post.img}}"/></span>
+        <span ng-show="{{post.img.length}}"><img ng-src="{{post.img_full}}"/></span>
         <div class="padding">
 <!--              <span  ng-show="{{post.Assunto.Nome.length}}">{{post.Assunto.Nome}}</span>
  -->            <h2 class="title">{{post.titulo}}</h2>
@@ -19,9 +19,7 @@
  -->
            
         </div>
- <a class="button button-full button-positive" href="#/app/noticia/{{post.postId}}">  
-            Veja a notícia completa
-            </a>
+
 
     </ion-content>
 </ion-view>

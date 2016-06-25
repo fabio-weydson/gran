@@ -7,10 +7,26 @@ angular.module('mobionicApp.controllers', [])
  $scope.items = Data.items;
  });
  */
-.controller('HomeCtrl',function($scope, $ionicLoading, PostsData, PostsStorage, ImgCache) {
+.controller('HomeCtrl',function($scope, $ionicLoading, PostsData, PostsStorage, ImgCache, $cordovaLocalNotification) {
 
     $scope.news = [];
     $scope.storage = '';
+
+       $scope.scheduleDelayedNotification = function () {
+      var now = new Date().getTime();
+      var _10SecondsFromNow = new Date(now + 10 * 1000);
+      
+      $cordovaLocalNotification.schedule({
+        id: 1,
+        title: 'Title here',
+        text: 'Text here',
+        at: _10SecondsFromNow
+      }).then(function (result) {
+        // ...
+      });
+    };
+
+    $scope.scheduleDelayedNotification();
 
     $scope.loading = $ionicLoading.show({
       template: '<i class="icon ion-loading-a"></i> Carregando',
@@ -459,12 +475,11 @@ angular.module('mobionicApp.controllers', [])
 }])
   
 // Contact Controller
-.controller('ContactCtrl', function($scope) {
+.controller('ContactCtrl', function($scope, $ionicLoading) {
     $scope.contact = {
       subject:  '',
       body: ''
     }
-
     $scope.submitForm = function() {
 
         window.plugin.email.open({
@@ -477,6 +492,129 @@ angular.module('mobionicApp.controllers', [])
         $scope.loadURL = function (url, target) {
         window.open(url, target);
     }
+
+
+})
+
+// Contact Controller
+.controller('MapCtrl', function($scope, $ionicLoading, $timeout,$interval) {
+$scope.rota = false;
+   $scope.finding = function(route) {
+            for (i = 0; i < route.length; i++) {
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(route[i].latitude, route[i].longitude),
+                    map: map
+                });
+            }
+        }
+$scope.start = 'Aguardando local de partida';
+$scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
+
+  $scope.getDir = function(){
+                $scope.start =  $('#partida').val();
+                var waypts = [];
+                var request = {
+                    origin: $scope.start,
+                    destination: $scope.end,
+                    waypoints: waypts,
+                    optimizeWaypoints: true,
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    unitSystem: google.maps.UnitSystem.METRIC
+
+                };
+                //Showing Loader so while the map is locating the A and B Points
+                $scope.loading = $ionicLoading.show({
+                  template: '<i class="icon ion-loading-a"></i> Buscando',
+                  showBackdrop: true,
+                  showDelay: 10
+                });
+                directionsService.route(request, function (response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        directionsDisplay.setDirections(response);
+                        $ionicLoading.hide();
+                        $scope.rota = true;
+                    }
+                });
+                $scope.finding(route)
+            }
+        var directionPoints = '[]';
+        var route = JSON.parse(directionPoints);
+        var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+        var map, response, marker;
+        //To show the initial map at some location
+        $scope.getAddress =function(lat,lon){
+                $.get('http://maps.google.com/maps/api/geocode/json?latlng='+lat+','+lon+'&sensor=false').success(function(mapData) {
+                $timeout(function() {
+              $scope.$apply(function () {
+            $scope.start = mapData.results[0].formatted_address;
+            $('#partida').val($scope.start)
+            });
+        }, 1000);
+            });
+
+        }
+   
+        $scope.initialize = function() {
+$scope.rota = false;
+              $scope.loading = $ionicLoading.show({
+                  template: '<i class="icon ion-loading-a"></i> Obtendo sua localização',
+                  showBackdrop: true,
+                  showDelay: 10
+                });
+
+          if (navigator.geolocation) {
+
+            navigator.geolocation.getCurrentPosition(showPosition);
+            $ionicLoading.hide();
+          } else {
+            alert("A geolocalização está desativada");
+          }
+
+        function showPosition(position) {
+
+          $scope.lat = position.coords.latitude;
+          $scope.lng = position.coords.longitude;
+
+            $scope.getAddress($scope.lat,$scope.lng);
+
+            var myLatlng = new google.maps.LatLng(-22.5667127, -47.4117628);
+            var mapOptions = {
+                center: myLatlng,
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: true,
+                streetViewControl:true,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                    position: google.maps.ControlPosition.TOP_CENTER
+                },
+                zoomControl: true,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_CENTER,
+                    style:google.maps.ZoomControlStyle.LARGE
+                },
+            };
+
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            map = new google.maps.Map(document.getElementById("map"),
+               mapOptions);
+            // Create infoWindow
+            var infoWindow = new google.maps.InfoWindow({
+                content: 'Clube Gran São João'
+            });
+                               var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Clube Gran São João'
+              });
+             infoWindow.open(map, marker);
+            directionsDisplay.setMap(map);
+            directionsDisplay.setPanel(document.getElementById("directions")); 
+            $scope.map = map;
+        }
+        }
+        $scope.initialize();
 
 
 })
@@ -707,6 +845,125 @@ angular.module('mobionicApp.controllers', [])
         }
         $scope.shareToWhatsApp  = function() {
             window.plugins.socialsharing.shareViaWhatsApp($scope.post.situlo, $scope.image, $scope.link);
+        }
+        $scope.shareViaEmail  = function() {
+            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
+        }
+
+
+})
+
+// Posts Controller
+.controller('AgendaCtrl', function($scope, $ionicLoading, AgendaData, AgendaStorage) {
+
+    $scope.eventos = [];
+    $scope.storage = '';
+     $scope.loadData = function () {
+    $scope.loading = $ionicLoading.show({
+      template: '<i class="icon ion-loading-a"></i> Carregando',
+
+      
+      showBackdrop: false,
+
+      
+      showDelay: 10
+    });
+
+    AgendaData.async().then(
+        // successCallback
+        function() {
+
+            $scope.eventos = AgendaData.getAll();
+            $ionicLoading.hide();
+        },
+        // errorCallback
+        function() {
+            $scope.eventos = AgendaStorage.all();
+            $scope.storage = 'Dados locais. Você está offline.';
+            $ionicLoading.hide();
+        },
+        // notifyCallback
+        function() {}
+    );
+    }
+    var page = 1;
+    // Define the number of the posts in the page
+    var pageSize = 7;
+
+    $scope.paginationLimit = function(data) {
+    return pageSize * page;
+    };
+
+    $scope.hasMoreItems = function() {
+    return page < ($scope.eventos.length / pageSize);
+    };
+
+    $scope.showMoreItems = function() {
+    page = page + 1;
+    };
+     $scope.loadData();
+})
+
+// Post Controller
+.controller('EventoCtrl', function($scope,  $ionicLoading,$ionicActionSheet, $stateParams, AgendaData) {
+
+    $scope.evento = AgendaData.get($stateParams.eventoId);
+    $scope.evento.eventoId = $stateParams.eventoId;
+
+    $scope.sharePost = function() {
+        
+    $scope.subject = $scope.evento.titulo;
+    $scope.message = $scope.evento.titulo;
+    $scope.link = '';
+    $scope.evento.img = encodeURI($scope.evento.img);
+  
+
+
+            $ionicActionSheet.show({
+                buttons: [
+                    { text: 'Facebook' },
+                    { text: 'Twitter' },
+                    { text: 'Whatsapp' },
+                    { text: 'Email' },
+                    { text: 'Outros' }
+                ],
+                titleText: 'Compartilhar',
+                cancelText: 'Cancelar',
+                buttonClicked: function(index) {
+                    switch(index) {
+                        case 0:
+                            $scope.shareToFacebook();
+                            break;
+                        case 1:
+                            $scope.shareToTwitter();
+                            break;
+                        case 2:
+                            $scope.shareToWhatsApp();
+                            break;
+                        case 3:
+                            $scope.shareViaEmail();
+                            break;
+                        case 4:
+                            $scope.shareNative();
+                            break;
+                    }
+                    return true;
+                }
+            });
+        }
+     
+
+        $scope.shareNative = function() {
+            window.plugins.socialsharing.share($scope.message, $scope.subject, $scope.image, $scope.link);
+        }
+         $scope.shareToFacebook  = function() {
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, $scope.image, $scope.link);
+        }
+        $scope.shareToTwitter  = function() {
+            window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
+        }
+        $scope.shareToWhatsApp  = function() {
+            window.plugins.socialsharing.shareViaWhatsApp($scope.evento.situlo, $scope.image, $scope.link);
         }
         $scope.shareViaEmail  = function() {
             window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
@@ -980,7 +1237,7 @@ angular.module('mobionicApp.controllers', [])
 
 })
 // Posts Controller post
-.controller('ProximosJogosCtrl', function($scope, $ionicLoading, ProximosJogosData, ProximosJogosStorage) {
+.controller('JogosCtrl', function($scope, $ionicLoading, JogosData, JogosStorage) {
 
     if (!Date.now) {
     Date.now = function() { return new Date().getTime(); }
@@ -995,7 +1252,33 @@ angular.module('mobionicApp.controllers', [])
     $scope.storage = '';
     $scope.datahoje = currentDate;
     console.log($scope.datahoje);
+
+
+    $scope.campeonatos = [
+          { id:'1', name:'Futsal' },
+          { id:'2', name:'Sintético Misto' },
+          { id:'3', name:'Sintético Veteranos' },
+          { id:'4', name:'Misto Grama' },
+          { id:'5', name:'Veteranos Grama' },
+        { id:'6', name:'Society' }
+    ];
     
+$scope.campeonatoSelect = false;
+$scope.changedValue=function(item){
+
+    if(item.id>0) {
+        $scope.campeonatoSelect = item.id
+    }  else {
+        $scope.campeonatoSelect = 100
+        $scope.getFilter()
+    }  
+     console.log($scope.campeonatoSelect)
+    }  
+
+     $scope.getFilter = function() {
+        return {campeonato: $scope.campeonatoSelect};
+    }
+
      $scope.loadData = function () {
     $scope.loading = $ionicLoading.show({
       template: '<i class="icon ion-loading-a"></i> Carregando',
@@ -1007,15 +1290,15 @@ angular.module('mobionicApp.controllers', [])
       showDelay: 10
     });
 
-    ProximosJogosData.async().then(
+    JogosData.async().then(
         // successCallback
         function() {
-            $scope.jogos = ProximosJogosData.getAll();
+            $scope.jogos = JogosData.getAll();
             $ionicLoading.hide();
         },
         // errorCallback
         function() {
-            $scope.jogos = ProximosJogosStorage.all();
+            $scope.jogos = JogosStorage.all();
             $scope.storage = 'Dados locais. Você está offline.';
             $ionicLoading.hide();
         },
@@ -1144,7 +1427,6 @@ $scope.changedValue=function(item){
 
 
 })
-
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, MenuData, $ionicActionSheet) {
 

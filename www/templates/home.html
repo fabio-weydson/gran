@@ -5,7 +5,7 @@
     <ion-nav-buttons side="right">
     <a ng-click="sharePost()" menu-close class="button button-icon icon ion-share"></a>
     </ion-nav-buttons>
-    <ion-content class="has-header">
+    <ion-content class="has-header" has-bouncing="false">
     <span class="localdata">{{storage}}</span>
 <!--             <img class="full-image" id="bannerapp" src="img/banner_app.jpg">
  -->            <div ng-controller="DestaquesCtrl" id="slides">
@@ -14,8 +14,8 @@
                 </div>
 				  <ion-slide-box on-slide-changed="slideChanged($index)" auto-play="true" does-continue="true" id="slidehome" delegate-handle="slidehome">
 				      <ion-slide ng-repeat="destaque in destaques | limitTo: 4"  >
-				        <a href="#/app/destaque/{{$index}}" ><h3>{{destaque.titulo}}</h3></a>
-				          <a href="#/app/destaque/{{$index}}" ><img img-cache ic-src="{{destaque.img}}" width="100%" style="100%;"></a>
+				        <!-- <a href="#/app/destaque/{{$index}}" ><h3>{{destaque.titulo}}</h3></a> -->
+				          <a href="#" ><img img-cache ic-src="{{destaque.img}}" ng-src="{{destaque.img}}" width="100%" style="100%;"></a>
 				      </ion-slide>
 				     
 				    </ion-slide-box>
@@ -44,18 +44,21 @@
         <div class="list">
 
             <a class="item" ng-class="{'item-thumbnail-left' : post.img.length}" href="#/app/posts/{{$index}}" ng-repeat="post in posts | limitTo: 6"  >
-                <img img-cache ic-src="{{post.img}}" with="150" ng-show="{{post.img}}">
+                <img img-cache ic-src="{{post.img}}" ng-src="{{post.img}}" with="150" >
                 
-                <h2>{{post.titulo}}</h2>
-                <h3>{{post.titulo}}</h3>
-                <p ng-bind-html="post.data * 1000 | date:'dd/MM/yy'"></p>
+                <h2>{{post.titulo}} <span ng-bind-html="post.data * 1000 | date:'dd/MM/yy'"></span></h2>
+                
             </a>
 
         </div>
-       
-        <a  href="#/app/posts"  nav-clear menu-close class="button button-block button-positive" >
+      <!--  
+        <a  href="#/app/posts"  nav-clear menu-close class="button button-full button-positive" >
         Mais notícias
-        </a>
+        </a> -->
+          <ion-infinite-scroll ng-show="hasMoreItems()" 
+    on-infinite="showMoreItems()"
+    distance="1%">
+  </ion-infinite-scroll>
       
     <!--
         <div class="list">

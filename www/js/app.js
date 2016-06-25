@@ -9,9 +9,10 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
      var push = new Ionic.Push({
       "debug": true
     });
-     push.register(function(token) {
-      console.log("My Device token:",token.token);
-      push.saveToken(token);  // persist the token in the Ionic Platform
+
+    push.register(function(token) {
+      console.log("Device token:",token.token);
+       push.saveToken(token);  // persist the token in the Ionic Platform
     });
      
     ImgCache.$init();
@@ -26,16 +27,16 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
       StatusBar.styleDefault();
     }
 
-    // Open any external link with InAppBrowser Plugin
-    $(document).on('click', 'a[href^=http], a[href^=https]', function(e){
+    // // Open any external link with InAppBrowser Plugin
+    // $(document).on('click', 'a[href^=http], a[href^=https]', function(e){
 
-        e.preventDefault();
-        var $this = $(this);
-        var target = $this.data('inAppBrowser') || '_blank';
+    //     e.preventDefault();
+    //     var $this = $(this);
+    //     var target = $this.data('inAppBrowser') || '_blank';
 
-        window.open($this.attr('href'), target);
+    //     window.open($this.attr('href'), target);
 
-    });
+    // });
 
   });
 
@@ -179,6 +180,15 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
         }
       }
     })
+     .state('app.map', {
+      url: "/map",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/map.html",
+          controller: 'MapCtrl'
+        }
+      }
+    })
     .state('app.posts', {
       url: "/posts",
       views: {
@@ -195,6 +205,25 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
         'menuContent' :{
           templateUrl: "templates/post.html",
           controller: 'PostCtrl'
+        }
+      }
+    })
+     .state('app.agenda', {
+      url: "/agenda",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/agenda.html",
+          controller: 'AgendaCtrl'
+        }
+      }
+    })
+
+    .state('app.evento', {
+      url: "/evento/:eventoId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/evento.html",
+          controller: 'EventoCtrl'
         }
       }
     })
@@ -242,12 +271,12 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
         }
       }
     })
-     .state('app.proximos_jogos', {
-      url: "/proximos_jogos",
+     .state('app.jogos', {
+      url: "/jogos",
       views: {
         'menuContent' :{
-          templateUrl: "templates/proximos_jogos.html",
-          controller: 'ProximosJogosCtrl'
+          templateUrl: "templates/jogos.html",
+          controller: 'JogosCtrl'
         }
       }
     })
