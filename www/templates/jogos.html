@@ -17,7 +17,7 @@
           </select>
         </label>
       </div>
-      <a class="item item-icon-right" ng-href="http://gran.com.br/site/arquivos/{{jogo.arquivo}}" onclick="window.open(this.href, '_blank', 'location=no'); return false;" ng-if="campeonatoSelect" ng-repeat="jogo in jogos  | filter:getFilter()" >    
+      <a class="item item-icon-right" href="http://gran.com.br/site/arquivos/{{jogo.arquivo}}" onclick="window.open(this.href, '_system', 'location=yes'); return false;" ng-if="campeonatoSelect" ng-repeat="jogo in jogos  | filter:getFilter()" >    
 <!--                         <a class="item" href="#" ng-repeat="jogo in jogos | limitTo: paginationLimit() | orderObjectBy:'DataHora':true" >      
  -->  
                 <div class="data"><!-- <span ng-bind-html="jogo.DataHora * 1000 | date:'dd/MM/yy'"></span> -->
