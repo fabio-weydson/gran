@@ -32,6 +32,7 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
     function failfunc(){
        alert('Falha ao criar atalho. Adicione manualmente.')
     }
+    }
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
