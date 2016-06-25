@@ -10,6 +10,11 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
       "debug": true
     });
 
+     document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+   alert("navigator.geolocation works well");
+}
+
     push.register(function(token) {
       console.log("Device token:",token.token);
        push.saveToken(token);  // persist the token in the Ionic Platform
