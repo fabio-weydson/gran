@@ -51,12 +51,8 @@ angular.module('mobionicApp.data', [])
         {
             title: 'O Clube',
             icon: 'ion-trophy',
-             subMenu: [
-                {
-                    title: "Historia",
-                    url: '#/app/historia',
-                    icon:"ion-clock",
-                }] 
+             url: '#/app/historia',
+             icon:"ion-information-circled",
         },
         {
             title: 'Noticias',
@@ -96,7 +92,7 @@ angular.module('mobionicApp.data', [])
             url: '#/app/jogos'
         },
                 {
-                    title: "Contatos",
+                    title: "Fale Conosco",
                     url: '#/app/contact',
                     icon:"ion-ios-email",
                 },
@@ -106,9 +102,9 @@ angular.module('mobionicApp.data', [])
                     icon:"ion-ios-location",
                 },
                 {
-                    title: "Ajustes",
-                    url: '#/app/settings',
-                    icon:"ion-ios-gear",
+                    title: "Notificações",
+                    url: '#/app/notificacoes',
+                    icon:"ion-android-notifications",
                 }
         
     ];

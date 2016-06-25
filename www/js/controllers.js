@@ -498,6 +498,7 @@ angular.module('mobionicApp.controllers', [])
 
 // Contact Controller
 .controller('MapCtrl', function($scope, $ionicLoading, $timeout,$interval) {
+
 $scope.rota = false;
    $scope.finding = function(route) {
             for (i = 0; i < route.length; i++) {
@@ -511,6 +512,7 @@ $scope.start = 'Aguardando local de partida';
 $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
 
   $scope.getDir = function(){
+
                 $scope.start =  $('#partida').val();
                 var waypts = [];
                 var request = {
@@ -524,7 +526,7 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
                 };
                 //Showing Loader so while the map is locating the A and B Points
                 $scope.loading = $ionicLoading.show({
-                  template: '<i class="icon ion-loading-a"></i> Buscando',
+                  template: '<i class="icon ion-loading-a"></i> Traçando rota. Aguarde...',
                   showBackdrop: true,
                   showDelay: 10
                 });
@@ -558,7 +560,7 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
         $scope.initialize = function() {
 $scope.rota = false;
               $scope.loading = $ionicLoading.show({
-                  template: '<i class="icon ion-loading-a"></i> Obtendo sua localização',
+                  template: '<i class="icon ion-loading-a"></i> Obtendo localização',
                   showBackdrop: true,
                   showDelay: 10
                 });
@@ -566,9 +568,17 @@ $scope.rota = false;
           if (navigator.geolocation) {
 
             navigator.geolocation.getCurrentPosition(showPosition);
-            $ionicLoading.hide();
+            $timeout(function() {
+                $ionicLoading.hide();
+            }, 1000);
+            
           } else {
-            alert("A geolocalização está desativada");
+              $scope.loading = $ionicLoading.show({
+      template: 'Seu GPS está desativado. Ative-o para se localizar.',
+      showBackdrop: false,
+      showDelay: 10,
+      duration: 2000
+    });
           }
 
         function showPosition(position) {
@@ -614,7 +624,11 @@ $scope.rota = false;
             $scope.map = map;
         }
         }
-        $scope.initialize();
+
+            $scope.$on('$ionicView.enter', function(){
+    $scope.initialize(); 
+    });
+       
 
 
 })
@@ -1373,57 +1387,61 @@ $scope.changedValue=function(item){
 
 })
 // Jogador Controller
-.controller('JogadorCtrl', function($scope, $stateParams, JogadoresData) {
+.controller('NotificacoesCtrl', function($scope, $stateParams, $ionicLoading) {
 
+$scope.ativado = true;
+$scope.ativaPush=function(val){
+    $scope.ativado = !$scope.ativado;
+    if($scope.ativado) {
+  $scope.loading = $ionicLoading.show({
+      template: 'As notificações foram ativadas!',
+      showBackdrop: false,
+      showDelay: 10,
+      duration: 2000
+    });
+    } else {
+      $scope.loading = $ionicLoading.show({
+      template: 'As notificações foram desativadas!',
+      showBackdrop: false,
+      showDelay: 10,
+      duration: 2000
+    });
+  }
 
-
-    $scope.jogador = JogadoresData.get($stateParams.jogadorId);
-
-    $scope.loadURL = function (url) {
-        window.open(url,'_self');
-    }
-
-    $scope.sharePost = function () {
-
-        var subject = $scope.jogador.NomeUsual;
-        var message = $scope.jogador.Idade;
-        message = message.replace(/(<([^>]+)>)/ig,"");
-        var link = $scope.jogador.url;
-        window.plugins.socialsharing.share(message, null, null, link);
     }
 
 })
 .controller('TextosCtrl', function($scope, $ionicLoading, $stateParams, $state) {
 
-   $scope.loading = $ionicLoading.show({
-      template: '<i class="icon ion-loading-a"></i> Carregando',
+//    $scope.loading = $ionicLoading.show({
+//       template: '<i class="icon ion-loading-a"></i> Carregando',
 
       
-      showBackdrop: false,
+//       showBackdrop: false,
 
       
-      showDelay: 10
-    });
-    if($state.current.name=='app.historia') {
-        $scope.colors = [
-          {id:'1', name:'Clube Gran São João'}
-        ];
-    }  
+//       showDelay: 10
+//     });
+//     if($state.current.name=='app.historia') {
+//         $scope.colors = [
+//           {id:'1', name:'Clube Gran São João'}
+//         ];
+//     }  
 
 
-$scope.colorsSelected = $scope.colors[0];
+// $scope.colorsSelected = $scope.colors[0];
 
-$scope.changedValue=function(item){
-        // $ionicLoading.show();
-     $.getJSON("http://gran.com.br/site/services/feed.php?conteudo=noticias&id="+item.id, function(result){
-         $scope.texto = '<h1 class="title">'+item.name+'</h1>'+result.Model.Textos;
-          $ionicLoading.hide();
-    });
+// $scope.changedValue=function(item){
+//         // $ionicLoading.show();
+//      $.getJSON("http://gran.com.br/site/services/feed.php?conteudo=noticias&id="+item.id, function(result){
+//          $scope.texto = '<h1 class="title">'+item.name+'</h1>'+result.Model.Textos;
+//           $ionicLoading.hide();
+//     });
 
-    }  
+//     }  
 
 
-    $scope.changedValue($scope.colors[0]);
+//     $scope.changedValue($scope.colors[0]);
 
 
 })
