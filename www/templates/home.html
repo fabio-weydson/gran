@@ -3,7 +3,7 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-    <a ng-click="sharePost()" menu-close class="button button-icon icon ion-share"></a>
+    <a ng-href="#/app/notificacoes"  nav-clear menu-close  class="button button-icon icon ion-android-notifications"></a>
     </ion-nav-buttons>
     <ion-content class="has-header" has-bouncing="false">
     <span class="localdata">{{storage}}</span>
@@ -44,9 +44,9 @@
         <div class="list">
 
             <a class="item" ng-class="{'item-thumbnail-left' : post.img.length}" href="#/app/posts/{{$index}}" ng-repeat="post in posts | limitTo: 6"  >
-                <img img-cache ic-src="{{post.img}}" ng-src="{{post.img}}" with="150" >
+                <img onerror="this.src='img/default.png'" img-cache ic-src="{{post.img}}" ng-src="{{post.img}}" with="150" >
                 
-                <h2>{{post.titulo}} <span ng-bind-html="post.data * 1000 | date:'dd/MM/yy'"></span></h2>
+                <h2>{{post.titulo | limitTo : 52}} <span ng-bind-html="post.data * 1000 | date:'dd/MM/yy'"></span></h2>
                 
             </a>
 

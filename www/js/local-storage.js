@@ -87,6 +87,23 @@ angular.module('mobionicApp.storage', [])
     }
   }
 })
+.factory('GaleriaStorage', function() {
+  return {
+    all: function() {
+      var galerias = window.localStorage['galerias'];
+      if(galerias) {
+        return angular.fromJson(galerias);
+      }
+      return {};
+    },
+    save: function(galerias) {
+      window.localStorage['galerias'] = angular.toJson(galerias);
+    },
+    clear: function() {
+      window.localStorage.removeItem('galeria');
+    }
+  }
+})
 .factory('FotosStorage', function() {
   return {
     all: function() {
