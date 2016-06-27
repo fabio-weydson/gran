@@ -163,59 +163,6 @@ angular.module('mobionicApp.controllers', [])
 })
 
 // Gallery Controller
-.controller('GaleriaCtrl', function($scope, $ionicLoading, $ionicActionSheet, GaleriaData, GaleriaStorage, $document) {
-
-    $scope.galerias = [];
-
-    $scope.loading = $ionicLoading.show({
-      template: '<i class="icon ion-loading-a"></i> Carregando',
-      showBackdrop: false,
-      showDelay: 10
-    });
-
-    GaleriaData.async().then(
-        // successCallback
-        function() {
-            $scope.galerias = GaleriaData.getAll();
-            $ionicLoading.hide();
-        },
-        // errorCallback
-        function() {
-            $scope.galerias = GaleriaStorage.all();
-            $scope.storage = 'Dados locais. Você está offline.';
-            $ionicLoading.hide();
-        },
-        // notifyCallback
-        function() {
-
-        }
-    )
-    var page = 1;
-    // Define the number of the posts in the page
-    var pageSize = 30;
-
-    $scope.paginationLimit = function(data) {
-    return pageSize * page;
-    };
-
-    $scope.hasMoreItems = function() {
-    return page < ($scope.galerias.length / pageSize);
-    };
-
-    $scope.showMoreItems = function() {
-    page = page + 1;
-    };
-    $scope.ativoimg='0';
-    $scope.ativolink='0';
-    $scope.ativotexto ='0';
-
-        $scope.loadURL = function (url) {
-            window.open(url,'_system');
-        }
-
-})
-
-// Gallery Controller
 .controller('FotosCtrl', function($scope, $ionicLoading, $ionicActionSheet, FotosData, FotosStorage, $document) {
 
     $scope.fotos = [];
@@ -239,13 +186,12 @@ angular.module('mobionicApp.controllers', [])
             $ionicLoading.hide();
         },
         // notifyCallback
-        function() {
-
-        }
+        function() {}
     )
+
     var page = 1;
     // Define the number of the posts in the page
-    var pageSize = 30;
+    var pageSize = 15;
 
     $scope.paginationLimit = function(data) {
     return pageSize * page;
@@ -612,7 +558,6 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
         }
    
         $scope.initialize = function() {
-            console.log('asdasd')
 $scope.rota = false;
               $scope.loading = $ionicLoading.show({
                   template: '<i class="icon ion-loading-a"></i> Obtendo localização',
@@ -838,7 +783,7 @@ $scope.rota = false;
     }
     var page = 1;
     // Define the number of the posts in the page
-    var pageSize = 50;
+    var pageSize = 7;
 
     $scope.paginationLimit = function(data) {
     return pageSize * page;

@@ -97,17 +97,8 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
         }
       }
     })
-    .state('app.galeria', {
-      url: "/galeria",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/galeria.html",
-          controller: 'GaleriaCtrl'
-        }
-      }
-    })
   .state('app.fotos', {
-      url: "/fotos:galeriaId",
+      url: "/fotos",
       views: {
         'menuContent' :{
           templateUrl: "templates/fotos.html",
@@ -139,6 +130,51 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
         'menuContent' :{
           templateUrl: "templates/historia.html",
           controller: 'TextosCtrl'
+        }
+      }
+    })
+    .state('app.simbolos', {
+      url: "/simbolos",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/historia.html",
+          controller: 'TextosCtrl'
+        }
+      }
+    })
+ .state('app.poderes', {
+      url: "/poderes",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/historia.html",
+          controller: 'TextosCtrl'
+        }
+      }
+    })
+    .state('app.jogador', {
+      url: "/jogador/:jogadorId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/jogador.html",
+          controller: 'JogadorCtrl'
+        }
+      }
+    })
+    .state('app.jogadores', {
+      url: "/jogadores",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/jogadores.html",
+          controller: 'JogadoresCtrl'
+        }
+      }
+    })
+  .state('app.about', {
+      url: "/about",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/about.html"
+          //controller: 'AboutCtrl'
         }
       }
     })
@@ -233,12 +269,38 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
         }
       }
     })
+ .state('app.socio', {
+      url: "/socio",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/socio.html"
+        }
+      }
+    })
+    .state('app.tempo_real', {
+      url: "/tempo_real",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/tempo_real.html",
+          controller: 'TempoRealCtrl'
+        }
+      }
+    })
      .state('app.jogos', {
       url: "/jogos",
       views: {
         'menuContent' :{
           templateUrl: "templates/jogos.html",
           controller: 'JogosCtrl'
+        }
+      }
+    })
+    .state('app.lances', {
+      url: "/lances",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/lances.html",
+          controller: 'LancesCtrl'
         }
       }
     })

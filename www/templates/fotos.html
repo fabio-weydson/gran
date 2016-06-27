@@ -11,13 +11,12 @@
 
          <div id="fotos" >
             <div class="thumb" data-thumbid="{{foto.id}}"  ng-repeat="foto in fotos  | limitTo: paginationLimit()">
-                <img ng-click="abre_foto($event, '{{foto.id}}')" data-texto="{{foto.nome | limitTo:240}}" data-imgfull="{{foto.img_full}}"  data-link="{{foto.img_full}}" onerror="this.src='img/default.png'" img-cache ic-src="{{foto.img}}" ng-src="{{foto.img}}"/>
+                <img ng-click="abre_foto($event, '{{foto.id}}')" data-texto="{{foto.caption.text | limitTo:240}}" data-imgfull="{{foto.images.standard_resolution.url}}"  data-link="{{foto.link}}" img-cache ic-src="{{foto.images.thumbnail.url}}"/>
             </div>
         </div>
-       <ion-infinite-scroll ng-show="hasMoreItems()" 
-    on-infinite="showMoreItems()"
-    distance="1%">
-  </ion-infinite-scroll>
+         <button class="button button-block button-positive" ng-show="hasMoreItems()" ng-click="showMoreItems()" >
+        Exibir mais
+        </button>
         
     </ion-content>
 </ion-view>
