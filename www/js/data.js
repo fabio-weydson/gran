@@ -66,7 +66,7 @@ angular.module('mobionicApp.data', [])
              subMenu: [
                 {
                     title: "Fotos",
-                    url: '#/app/fotos',
+                    url: '#/app/galeria',
                     icon:"ion-android-image",
                 },
                 {
@@ -114,8 +114,8 @@ angular.module('mobionicApp.data', [])
 
 .factory('FotosData', function($http, $q, FotosStorage) {
 
-    var json = 'https://api.instagram.com/v1/users/2107328463/media/recent/?access_token=206080583.5b9e1e6.85d847631af641f1a32e0e0eb4524763&count=60';
-
+    // var json = 'https://api.instagram.com/v1/users/2107328463/media/recent/?access_token=206080583.5b9e1e6.85d847631af641f1a32e0e0eb4524763&count=60';
+    var json = 'http://gran.com.br/site/services/feed.php?conteudo=fotos&limit=100';
     var deferred = $q.defer();
     var promise = deferred.promise;
     var data = [];
@@ -126,7 +126,7 @@ angular.module('mobionicApp.data', [])
     // this callback will be called asynchronously
     // when the response is available.
     success(function(d) {
-        data = d.data;
+        data = d.Model;
         FotosStorage.save(data);
         deferred.resolve();
     }).
@@ -147,7 +147,41 @@ angular.module('mobionicApp.data', [])
 
     return service;
 })
+.factory('GaleriaData', function($http, $q, GaleriaStorage) {
 
+    // var json = 'https://api.instagram.com/v1/users/2107328463/media/recent/?access_token=206080583.5b9e1e6.85d847631af641f1a32e0e0eb4524763&count=60';
+    var json = 'http://gran.com.br/site/services/feed.php?conteudo=fotos&limit=100';
+    var deferred = $q.defer();
+    var promise = deferred.promise;
+    var data = [];
+    var service = {};
+
+    service.async = function() {
+    $http({method: 'GET', url: json, timeout: 5000}).
+    // this callback will be called asynchronously
+    // when the response is available.
+    success(function(d) {
+        data = d.Model;
+        GaleriaStorage.save(data);
+        deferred.resolve();
+    }).
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+    error(function() {
+        data = GaleriaStorage.all();
+        deferred.reject();
+    });
+
+    return promise;
+
+    };
+
+    service.getAll = function() { return data; };
+
+    service.get = function(galeriaId) { return data[galeriaId]; };
+
+    return service;
+})
 // Gallery Data: Gallery configuration
 .factory('VideosData', function($http, $q, VideosStorage) {
 
