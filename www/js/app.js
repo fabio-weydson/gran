@@ -107,6 +107,7 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
       }
     })
   .state('app.fotos', {
+    cache: false,
       url: "/fotos:galeriaId",
       views: {
         'menuContent' :{

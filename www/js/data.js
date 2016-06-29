@@ -150,7 +150,7 @@ angular.module('mobionicApp.data', [])
 .factory('GaleriaData', function($http, $q, GaleriaStorage) {
 
     // var json = 'https://api.instagram.com/v1/users/2107328463/media/recent/?access_token=206080583.5b9e1e6.85d847631af641f1a32e0e0eb4524763&count=60';
-    var json = 'http://gran.com.br/site/services/feed.php?conteudo=fotos&limit=100';
+    var json = 'http://gran.com.br/site/services/feed.php?conteudo=galerias&limit=100';
     var deferred = $q.defer();
     var promise = deferred.promise;
     var data = [];

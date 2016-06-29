@@ -1,7 +1,4 @@
 <ion-view title="Fotos">
- <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
     <ion-nav-buttons side="right">
      <a ng-click="loadURL('https://www.instagram.com/gransaojoao/')" class="button button-icon icon ion-social-instagram"></a>
     </ion-nav-buttons>        
@@ -11,7 +8,7 @@
 
          <div id="fotos" >
             <div class="thumb" data-thumbid="{{foto.id}}"  ng-repeat="foto in fotos  | limitTo: paginationLimit()">
-                <img ng-click="abre_foto($event, '{{foto.id}}')" data-texto="{{foto.nome | limitTo:240}}" data-imgfull="{{foto.img_full}}"  data-link="{{foto.img_full}}" onerror="this.src='img/default.png'" img-cache ic-src="{{foto.img}}" ng-src="{{foto.img}}"/>
+                <img ng-click="abre_foto($event, '{{foto.id}}')"  data-imgfull="{{foto.img_full}}"  data-link="{{foto.img_full}}" onerror="this.src='img/default.png'" img-cache ic-src="{{foto.img}}" ng-src="{{foto.img}}"/>
             </div>
         </div>
        <ion-infinite-scroll ng-show="hasMoreItems()" 

@@ -8,22 +8,16 @@
     <ion-content class="has-header" overflow-scroll="true" id="noticias-lista" has-bouncing="true">
         
        <span class="localdata">{{storage}}</span>
-       <div collection-repeat="galeria in galerias | limitTo: paginationLimit()">
-    <div class="list card">
+        <div class="list">
 
-            <div class="item"  >
-            <h2>{{galeria.nome}}</h2>
-            <p ng-bind-html="galeria.data * 1000 | date:'dd/MM/yy'"></p>
-          </div>
-          <div class="item item-body">
-            <img class="full-image" onerror="this.src='img/default.png'" height="80" img-cache ic-src="{{galeria.img}}" ng-src="{{galeria.img}}">
-            <p>
-              <a href="#" class="subdued">{{galerias.length}} Fotos</a>
-            </p>
-          </div>
+            <a class="item" ng-class="{'item-thumbnail-left' : galeria.img.length}" ng-href="#/app/fotos:{{galeria.id}}"  ng-repeat="galeria in galerias | limitTo: paginationLimit()" >
+                <img img-cache ic-src="{{galeria.img}}" ng-src="{{galeria.img}}" with="150" ng-show="{{galeria.img.length}}" >
+                <h2>{{galeria.id}} {{galeria.nome}} <span ng-bind-html="galeria.data * 1000 | date:'dd/MM/yy'"></span></h2>
+               
+            </a>
 
         </div>
-      </div>
+
 
         <ion-infinite-scroll ng-show="hasMoreItems()" 
     on-infinite="showMoreItems()"

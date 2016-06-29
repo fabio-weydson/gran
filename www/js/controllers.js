@@ -216,8 +216,10 @@ angular.module('mobionicApp.controllers', [])
 })
 
 // Gallery Controller
-.controller('FotosCtrl', function($scope, $ionicLoading, $ionicActionSheet, FotosData, FotosStorage, $document) {
+.controller('FotosCtrl', function($scope, $stateParams, $state, $ionicLoading, $ionicActionSheet, FotosData, FotosStorage, $document) {
 
+    $scope.id = $stateParams.galeriaId.replace(':','');
+    console.log($scope.id)
     $scope.fotos = [];
 
     $scope.loading = $ionicLoading.show({
@@ -226,54 +228,29 @@ angular.module('mobionicApp.controllers', [])
       showDelay: 10
     });
 
-    FotosData.async().then(
-        // successCallback
-        function() {
-            $scope.fotos = FotosData.getAll();
-            $ionicLoading.hide();
-        },
-        // errorCallback
-        function() {
-            $scope.fotos = FotosStorage.all();
-            $scope.storage = 'Dados locais. Você está offline.';
-            $ionicLoading.hide();
-        },
-        // notifyCallback
-        function() {
-
-        }
-    )
-    var page = 1;
-    // Define the number of the posts in the page
-    var pageSize = 30;
-
-    $scope.paginationLimit = function(data) {
-    return pageSize * page;
-    };
-
-    $scope.hasMoreItems = function() {
-    return page < ($scope.fotos.length / pageSize);
-    };
-
-    $scope.showMoreItems = function() {
-    page = page + 1;
-    };
-    $scope.ativoimg='0';
-    $scope.ativolink='0';
-    $scope.ativotexto ='0';
-
+     $.ajax({
+              type: "GET",
+              dataType: 'json',
+              url: "http://gran.com.br/site/services/feed.php?conteudo=fotos&id="+$scope.id,
+              success: function( data ) {
+                        
+                        $scope.fotos = data.Model;
+                        $ionicLoading.hide();
+                
+                }
+    });
+ $scope.goFotos = function(aid){
+    console.log(aid);
+            $state.go('fotos', {id: aid},{reload: true});
+    }  
     $scope.abre_foto = function (passedEventObject, thumbid) {
      var window_height = window.innerHeight;
          $('#lightbox span').css('max-height', window_height-Math.round((window_height*25)/100));
         var imagem = $('#fotos div[data-thumbid="'+thumbid+'"] img').data('imgfull');
-        var texto = $('#fotos div[data-thumbid="'+thumbid+'"] img').data('texto');
         var link = $('#fotos div[data-thumbid="'+thumbid+'"] img').data('link');
-        texto = texto.replace(/(^|\W)(#[a-z\d][\w-]*)/ig, "$1<em class='hash_tag'>$2</em>").replace(/\s*$/, "");
-         texto = texto.replace(/(^|\W)(@[a-z\d][\w-]*)/ig, "$1<em class='hash_tag'>$2</em>").replace(/\s*$/, "");
-        $('#lightbox span').html('<img src="'+imagem+'"/><b>'+texto+'</b>').promise().done(function(){
+        $('#lightbox span').html('<img src="'+imagem+'"/>').promise().done(function(){
             $scope.ativoimg = imagem;
             $scope.ativolink = link;
-            $scope.ativotexto = texto;
             $('#lightbox').fadeIn(500);  
         });  
     };
@@ -283,66 +260,10 @@ angular.module('mobionicApp.controllers', [])
         });  
     };
 
-     $scope.sharePost = function() {
-        
-    $scope.subject = null;
-    $scope.link = $scope.ativolink.replace('https://instagram.com', 'http://instagr.am');
-    $scope.message = $scope.ativotexto.replace(/(<([^>]+)>)/ig,"");
-    $scope.image = $scope.ativoimg;
-    console.log($scope.ativoimg);
-            $ionicActionSheet.show({
-                buttons: [
-                    { text: 'Facebook' },
-                    { text: 'Twitter' },
-                    { text: 'Whatsapp' },
-                    { text: 'Email' },
-                    { text: 'Outros' }
-                ],
-                titleText: 'Compartilhar',
-                cancelText: 'Cancelar',
-                buttonClicked: function(index) {
-                    switch(index) {
-                        case 0:
-                            $scope.shareToFacebook();
-                            break;
-                        case 1:
-                            $scope.shareToTwitter();
-                            break;
-                        case 2:
-                            $scope.shareToWhatsApp();
-                            break;
-                        case 3:
-                            $scope.shareViaEmail();
-                            break;
-                        case 4:
-                            $scope.shareNative();
-                            break;
-                    }
-                    return true;
-                }
-            });
-        }
-     
 
-        $scope.shareNative = function() {
-            window.plugins.socialsharing.share($scope.message, $scope.subject, $scope.image, $scope.link);
-        }
-         $scope.shareToFacebook  = function() {
-            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, null, $scope.link);
-        }
-        $scope.shareToTwitter  = function() {
-            window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
-        }
-        $scope.shareToWhatsApp  = function() {
-            window.plugins.socialsharing.shareViaWhatsApp($scope.message, $scope.image, $scope.link);
-        }
-        $scope.shareViaEmail  = function() {
-            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
-        }
-
-        $scope.loadURL = function (url) {
-            window.open(url,'_system');
-        }
+    $scope.loadURL = function (url) {
+        window.open(url,'_system');
+    }
 
 })
 
