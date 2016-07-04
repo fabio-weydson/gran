@@ -8,7 +8,7 @@
 
          <div id="fotos" >
             <div class="thumb" data-thumbid="{{foto.id}}"  ng-repeat="foto in fotos  | limitTo: paginationLimit()">
-                <img ng-click="abre_foto($event, '{{foto.id}}')"  data-imgfull="{{foto.img_full}}"  data-link="{{foto.img_full}}" onerror="this.src='img/default.png'" img-cache ic-src="{{foto.img}}" ng-src="{{foto.img}}"/>
+                <img ng-click="abre_foto($event, {{foto.id}})"  data-imgfull="{{foto.img_full}}"  data-link="http://gran.com.br" onerror="this.src='img/default.png'" img-cache ic-src="{{foto.img}}" ng-src="{{foto.img}}"/>
             </div>
         </div>
        <ion-infinite-scroll ng-show="hasMoreItems()" 

@@ -261,6 +261,62 @@ angular.module('mobionicApp.controllers', [])
     };
 
 
+    $scope.sharePost = function() {
+        
+    $scope.subject =  "Clube Gran São João";
+    $scope.link = $scope.ativolink ;
+    $scope.message =  "Clube Gran São João";
+    $scope.image = $scope.ativoimg;
+
+            $ionicActionSheet.show({
+                buttons: [
+                    { text: 'Facebook' },
+                    { text: 'Twitter' },
+                    { text: 'Whatsapp' },
+                    { text: 'Email' },
+                    { text: 'Outros' }
+                ],
+                titleText: 'Compartilhar',
+                cancelText: 'Cancelar',
+                buttonClicked: function(index) {
+                    switch(index) {
+                        case 0:
+                            $scope.shareToFacebook();
+                            break;
+                        case 1:
+                            $scope.shareToTwitter();
+                            break;
+                        case 2:
+                            $scope.shareToWhatsApp();
+                            break;
+                        case 3:
+                            $scope.shareViaEmail();
+                            break;
+                        case 4:
+                            $scope.shareNative();
+                            break;
+                    }
+                    return true;
+                }
+            });
+        }
+     
+
+        $scope.shareNative = function() {
+            window.plugins.socialsharing.share($scope.message, $scope.subject, null, $scope.link);
+        }
+         $scope.shareToFacebook  = function() {
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, null, $scope.link);
+        }
+        $scope.shareToTwitter  = function() {
+            window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
+        }
+        $scope.shareToWhatsApp  = function() {
+            window.plugins.socialsharing.shareViaWhatsApp($scope.post.Titulo, null, $scope.link);
+        }
+        $scope.shareViaEmail  = function() {
+            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
+        }
     $scope.loadURL = function (url) {
         window.open(url,'_system');
     }
@@ -503,7 +559,8 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
                 $scope.loading = $ionicLoading.show({
                   template: '<i class="icon ion-loading-a"></i> Traçando rota. Aguarde...',
                   showBackdrop: true,
-                  showDelay: 10
+                  showDelay: 10,
+                  duration: 7000
                 });
                 directionsService.route(request, function (response, status) {
                     if (status == google.maps.DirectionsStatus.OK) {
@@ -534,31 +591,41 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
    
         $scope.initialize = function() {
             console.log('asdasd')
-$scope.rota = false;
-              $scope.loading = $ionicLoading.show({
+            $scope.rota = false;
+            $scope.loading = $ionicLoading.show({
                   template: '<i class="icon ion-loading-a"></i> Obtendo localização',
                   showBackdrop: true,
-                  showDelay: 10
+                  showDelay: 10,
+                  duration: 7000
                 });
 
           if (navigator.geolocation) {
-
-            navigator.geolocation.getCurrentPosition(showPosition);
-            $timeout(function() {
-                $ionicLoading.hide();
-            }, 1000);
-            
+                navigator.geolocation.getCurrentPosition(showPosition, 
+                    function(){
+                        $scope.desabilita_tracar = false;
+                         $scope.loading = $ionicLoading.show({
+                      template: 'Seu GPS está desativado. Ative-o para se localizar.',
+                      showBackdrop: false,
+                      showDelay: 10,
+                      duration: 2000
+                });
+                    }
+                );
+                $timeout(function() {
+                    $ionicLoading.hide();
+                }, 1000);
           } else {
-              $scope.loading = $ionicLoading.show({
-      template: 'Seu GPS está desativado. Ative-o para se localizar.',
-      showBackdrop: false,
-      showDelay: 10,
-      duration: 2000
-    });
+            $scope.desabilita_tracar = false;
+                $scope.loading = $ionicLoading.show({
+                      template: 'Seu GPS está desativado. Ative-o para se localizar.',
+                      showBackdrop: false,
+                      showDelay: 10,
+                      duration: 2000
+                });
           }
 
         function showPosition(position) {
-
+            $scope.desabilita_tracar = true;
           $scope.lat = position.coords.latitude;
           $scope.lng = position.coords.longitude;
 

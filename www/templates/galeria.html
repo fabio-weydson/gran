@@ -13,12 +13,8 @@
             <a class="item" ng-class="{'item-thumbnail-left' : galeria.img.length}" ng-href="#/app/fotos:{{galeria.id}}"  ng-repeat="galeria in galerias | limitTo: paginationLimit()" >
                 <img img-cache ic-src="{{galeria.img}}" ng-src="{{galeria.img}}" with="150" ng-show="{{galeria.img.length}}" >
                 <h2>{{galeria.id}} {{galeria.nome}} <span ng-bind-html="galeria.data * 1000 | date:'dd/MM/yy'"></span></h2>
-               
             </a>
-
         </div>
-
-
         <ion-infinite-scroll ng-show="hasMoreItems()" 
     on-infinite="showMoreItems()"
     distance="1%">
