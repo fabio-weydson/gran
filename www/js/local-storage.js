@@ -34,38 +34,21 @@ angular.module('mobionicApp.storage', [])
     }
   }
 })
-.factory('ProductsStorage', function() {
-  return {
-    all: function() {
-      var products = window.localStorage['products'];
-      if(products) {
-        return angular.fromJson(products);
-      }
-      return {};
-    },
-    save: function(products) {
-      window.localStorage['products'] = angular.toJson(products);
-    },
-    clear: function() {
-      window.localStorage.removeItem('products');
-    }
-  }
-})
 
-.factory('JogadoresStorage', function() {
+.factory('PushStorage', function() {
   return {
     all: function() {
-      var jogadores = window.localStorage['jogadores'];
-      if(jogadores) {
-        return angular.fromJson(jogadores);
+      var notificacoes = window.localStorage['notificacoes'];
+      if(notificacoes) {
+        return angular.fromJson(notificacoes);
       }
       return {};
     },
-    save: function(jogadores) {
-      window.localStorage['jogadores'] = angular.toJson(jogadores);
+    save: function(notificacoes) {
+      window.localStorage['notificacoes'] = angular.toJson(notificacoes);
     },
     clear: function() {
-      window.localStorage.removeItem('jogadores');
+      window.localStorage.removeItem('notificacoes');
     }
   }
 })
@@ -186,76 +169,6 @@ angular.module('mobionicApp.storage', [])
     },
     clear: function() {
       window.localStorage.removeItem('destaques');
-    }
-  }
-})
-.factory('TempoRealStorage', function() {
-  return {
-    all: function() {
-      var temporeal = window.localStorage['temporeal'];
-      if(temporeal) {
-        return angular.fromJson(temporeal);
-      }
-      return {};
-    },
-    save: function(temporeal) {
-      window.localStorage['temporeal'] = angular.toJson(temporeal);
-    },
-    clear: function() {
-      window.localStorage.removeItem('temporeal');
-    }
-  }
-})
-.factory('LancesStorage', function() {
-  return {
-    all: function() {
-      var lances = window.localStorage['lances'];
-      if(lances) {
-        return angular.fromJson(lances);
-      }
-      return {};
-    },
-    save: function(lances) {
-      window.localStorage['lances'] = angular.toJson(lances);
-    },
-    clear: function() {
-      window.localStorage.removeItem('lances');
-    }
-  }
-})
-
-.factory('ServerPostsStorage', function() {
-  return {
-    all: function() {
-      var serverposts = window.localStorage['serverposts'];
-      if(serverposts) {
-        return angular.fromJson(serverposts);
-      }
-      return {};
-    },
-    save: function(serverposts) {
-      window.localStorage['serverposts'] = angular.toJson(serverposts);
-    },
-    clear: function() {
-      window.localStorage.removeItem('serverposts');
-    }
-  }
-})
-
-.factory('FeedsStorage', function() {
-  return {
-    all: function() {
-      var feeds = window.localStorage['feeds'];
-      if(feeds) {
-        return angular.fromJson(feeds);
-      }
-      return {};
-    },
-    save: function(feeds) {
-      window.localStorage['feeds'] = angular.toJson(feeds);
-    },
-    clear: function() {
-      window.localStorage.removeItem('feeds');
     }
   }
 })

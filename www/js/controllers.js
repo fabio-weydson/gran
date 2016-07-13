@@ -508,16 +508,32 @@ angular.module('mobionicApp.controllers', [])
 // Contact Controller
 .controller('ContactCtrl', function($scope, $ionicLoading) {
     $scope.contact = {
-      subject:  '',
-      body: ''
+        nome:  '',
+      assunto:  'Mensagem APP',
+      email:  '',
+      mensagem: ''
     }
     $scope.submitForm = function() {
 
-        window.plugin.email.open({
-            to:      ['fabioweydson@gmail.com'],
-            subject: 'Mensagem APP: '+$scope.contact.subject,
-            body:    $scope.contact.body
-        });
+        $.ajax({
+          type: "POST",
+          url: 'http://gran.com.br/site/envia_contato.php',
+          data: $scope.contact,
+          success: function(result){
+              $scope.loading = $ionicLoading.show({
+                      template: result,
+                      showBackdrop: false,
+                      showDelay: 10,
+                      duration: 2000
+                });
+               $scope.contact = {
+        nome:  '',
+      assunto:  'Mensagem APP',
+      email:  '',
+      mensagem: ''
+    }
+          }
+          });
 
     }
         $scope.loadURL = function (url, target) {
@@ -1430,7 +1446,7 @@ $scope.changedValue=function(item){
 
 })
 // Jogador Controller
-.controller('NotificacoesCtrl', function($scope, $stateParams, $ionicLoading) {
+.controller('NotificacoesCtrl', function($scope, $stateParams, $ionicLoading, PushData, PushStorage) {
 
 $scope.ativado = true;
 $scope.ativaPush=function(val){
@@ -1452,6 +1468,51 @@ $scope.ativaPush=function(val){
   }
 
     }
+
+    $scope.notificacoes = [];
+    $scope.storage = '';
+
+    $scope.loading = $ionicLoading.show({
+      template: '<i class="icon ion-loading-a"></i> Carregando',
+
+      
+      showBackdrop: false,
+
+      
+      showDelay: 10
+    });
+
+    PushData.async().then(
+        // successCallback
+        function() {
+            $scope.notificacoes = PushData.getAll();
+            $ionicLoading.hide();
+        },
+        // errorCallback
+        function() {
+            $scope.notificacoes = PushStorage.all();
+            $scope.storage = 'Dados locais. Você está offline.';
+            $ionicLoading.hide();
+        },
+        // notifyCallback
+        function() {}
+    );
+
+    var page = 1;
+    // Define the number of the posts in the page
+    var pageSize = 5;
+
+    $scope.paginationLimit = function(data) {
+    return pageSize * page;
+    };
+
+    $scope.hasMoreItems = function() {
+    return page < ($scope.notificacoes.length / pageSize);
+    };
+
+    $scope.showMoreItems = function() {
+    page = page + 1;
+    };
 
 })
 .controller('TextosCtrl', function($scope, $ionicLoading, $stateParams, $state) {

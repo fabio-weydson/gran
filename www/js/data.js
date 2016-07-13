@@ -412,16 +412,10 @@ angular.module('mobionicApp.data', [])
 })
 
 // Posts Data: JSON Wordpress Posts configuration
-.factory('JogadoresData', function($http, $q, JogadoresStorage) {
+.factory('PushData', function($http, $q, PushStorage) {
 
     
-    var json = 'http://www.fortalezaec.net/Json/Jogadores?categoriaId=00e967dfc6f74ca5b523546ce9cce0f2';
-
-    /* Set your URL as you can see in the following example */
-    // var json = 'YourWordpressURL/?json=get_recent_posts';
-
-    /* With user-friendly permalinks configured */
-    // var json = 'YourWordpressURL/api/get_recent_posts';
+    var json = 'http://gran.com.br/site/services/feed.php?conteudo=notificacoes';
 
     var deferred = $q.defer();
     var promise = deferred.promise;
@@ -435,13 +429,13 @@ angular.module('mobionicApp.data', [])
     success(function(d) {
         data = d.Model;
         
-        JogadoresStorage.save(data);
+        PushStorage.save(data);
         deferred.resolve();
     }).
     // called asynchronously if an error occurs
     // or server returns response with an error status.
     error(function() {
-        data = JogadoresStorage.all();
+        data = PushStorage.all();
         deferred.reject();
     });
 
@@ -452,7 +446,7 @@ angular.module('mobionicApp.data', [])
     service.getAll = function() { return data; };
 
     service.get = function(jogadorId) {
-	    return data[jogadorId];
+	    return data[notificacaoId];
 	};
 
     return service;

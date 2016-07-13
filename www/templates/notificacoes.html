@@ -17,10 +17,10 @@
        </div>
      </label>
   </li>
-    <li class="item item-icon-left"  >
+    <a class="item item-icon-left" ng-href="{{notificacao.link}}" ng-repeat="notificacao in notificacoes" >
       <i class="icon  icon ion-android-notifications"></i>
-      <h2>Caro associado o período para renovação das carteirinhas é até  05/06/2017 <span>25/06/2016</span></h2>
-    </li>
+      <h2>{{notificacao.texto}}<span ng-bind-html="notificacao.data * 1000 | date:'dd/MM/yy'"></span></h2>
+    </a>
 </ul>
          <ion-infinite-scroll ng-show="hasMoreItems()" 
     on-infinite="showMoreItems()"
