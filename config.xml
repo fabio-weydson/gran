@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.clubegran.app" version="1.2" 
+<widget id="com.clubegran.app" version="1.4" 
   xmlns:gap="http://phonegap.com/ns/1.0" 
   xmlns:android="http://schemas.android.com/apk/res/android" 
   xmlns="http://www.w3.org/ns/widgets"
+
   xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Gran São João</name>
   <description>
@@ -70,6 +71,7 @@
   </gap:plugin>
 <icon src="icon.png" />
 <splash src="splash.png" /> 
+
  <platform name="android">
     <!-- you can use any density that exists in the Android project -->
     <splash src="resources/android/splash/hdpi-landscape.png" density="land-hdpi"/>
