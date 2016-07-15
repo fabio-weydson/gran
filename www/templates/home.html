@@ -13,7 +13,7 @@
                     <span style="width: 0%"></span>
                 </div>
 				  <ion-slide-box on-slide-changed="slideChanged($index)" auto-play="true" does-continue="true" id="slidehome" delegate-handle="slidehome">
-				      <ion-slide ng-repeat="destaque in destaques | limitTo: 4"  >
+				      <ion-slide ng-repeat="destaque in destaques | limitTo: 10"  >
 				        <!-- <a href="#/app/destaque/{{$index}}" ><h3>{{destaque.titulo}}</h3></a> -->
 				          <a href="#" ><img img-cache ic-src="{{destaque.img}}" ng-src="{{destaque.img}}" width="100%" style="100%;"></a>
 				      </ion-slide>
