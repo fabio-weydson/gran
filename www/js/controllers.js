@@ -606,7 +606,8 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
         }
    
         $scope.initialize = function() {
-            console.log('asdasd')
+            
+            
             $scope.rota = false;
             $scope.loading = $ionicLoading.show({
                   template: '<i class="icon ion-loading-a"></i> Obtendo localização',
@@ -623,17 +624,23 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
                       template: 'Seu GPS está desativado. Ative-o para se localizar.',
                       showBackdrop: false,
                       showDelay: 10,
-                      duration: 2000
+                 
                 });
+                           var testador = $interval(function(){
+                            console.log('testando')
+                               navigator.geolocation.getCurrentPosition(function(){
+                                $interval.cancel(testador);
+                                $ionicLoading.hide();
+                                $hide.go('map',{reload: true});
+                               });
+                          },2000)  
                     }
                 );
-                $timeout(function() {
-                    $ionicLoading.hide();
-                }, 1000);
+           
           } else {
             $scope.desabilita_tracar = false;
                 $scope.loading = $ionicLoading.show({
-                      template: 'Seu GPS está desativado. Ative-o para se localizar.',
+                      template: 'Seu GPS está desativado. Ative-o para localizar.',
                       showBackdrop: false,
                       showDelay: 10,
                       duration: 2000
@@ -868,7 +875,7 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
         
     $scope.subject = $scope.post.titulo;
     $scope.message = $scope.post.titulo;
-    $scope.link = '';
+    $scope.link = 'http://www.gran.com.br/site/?pg=noticia&id=61'+$scope.post.id;
     $scope.post.img = encodeURI($scope.post.img);
   
 
@@ -908,16 +915,16 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
      
 
         $scope.shareNative = function() {
-            window.plugins.socialsharing.share($scope.message, $scope.subject, $scope.image, $scope.link);
+            window.plugins.socialsharing.share($scope.message, $scope.subject,$scope.post.img, $scope.link);
         }
          $scope.shareToFacebook  = function() {
-            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, $scope.image, $scope.link);
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject,$scope.post.img, $scope.link);
         }
         $scope.shareToTwitter  = function() {
             window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
         }
         $scope.shareToWhatsApp  = function() {
-            window.plugins.socialsharing.shareViaWhatsApp($scope.post.situlo, $scope.image, $scope.link);
+            window.plugins.socialsharing.shareViaWhatsApp($scope.post.message,$scope.post.img, $scope.link);
         }
         $scope.shareViaEmail  = function() {
             window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
@@ -987,7 +994,7 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
         
     $scope.subject = $scope.evento.titulo;
     $scope.message = $scope.evento.titulo;
-    $scope.link = '';
+    $scope.link = 'http://www.gran.com.br/site/?pg=eventos';
     $scope.evento.img = encodeURI($scope.evento.img);
   
 
@@ -1027,16 +1034,16 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
      
 
         $scope.shareNative = function() {
-            window.plugins.socialsharing.share($scope.message, $scope.subject, $scope.image, $scope.link);
+            window.plugins.socialsharing.share($scope.message, $scope.subject,  $scope.evento.img, $scope.link);
         }
          $scope.shareToFacebook  = function() {
-            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, $scope.image, $scope.link);
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject,  $scope.evento.img, $scope.link);
         }
         $scope.shareToTwitter  = function() {
             window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
         }
         $scope.shareToWhatsApp  = function() {
-            window.plugins.socialsharing.shareViaWhatsApp($scope.evento.situlo, $scope.image, $scope.link);
+            window.plugins.socialsharing.shareViaWhatsApp($scope.evento.situlo,  $scope.evento.img, $scope.link);
         }
         $scope.shareViaEmail  = function() {
             window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
