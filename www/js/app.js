@@ -5,7 +5,7 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
      var push = new Ionic.Push({
-      "debug": true
+      "debug": false
     });
 
     push.register(function(token) {
