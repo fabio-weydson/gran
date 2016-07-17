@@ -607,7 +607,7 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
                          $scope.loading = $ionicLoading.show({
                       template: 'Seu GPS está desativado. Ative-o para se localizar.',
                       showBackdrop: false,
-                      showDelay: 10,
+                      showDelay: 10
                  
                 });
                            var testador = $interval(function(){
@@ -625,9 +625,14 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
                 $scope.loading = $ionicLoading.show({
                       template: 'Seu GPS está desativado. Ative-o para localizar.',
                       showBackdrop: false,
-                      showDelay: 10,
-                      duration: 2000
-                });
+                      showDelay: 10                });
+                 var testador = $interval(function(){
+                               navigator.geolocation.getCurrentPosition(function(){
+                                $interval.cancel(testador);
+                                $ionicLoading.hide();
+                                $state.reload();
+                               });
+                          },2000)  
           }
 
         function showPosition(position) {
