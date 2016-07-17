@@ -7,26 +7,11 @@ angular.module('mobionicApp.controllers', [])
  $scope.items = Data.items;
  });
  */
-.controller('HomeCtrl',function($scope, $ionicLoading, PostsData, PostsStorage, ImgCache, $cordovaLocalNotification) {
+.controller('HomeCtrl',function($scope, $ionicLoading, PostsData, PostsStorage, ImgCache, $cordovaLocalNotification,notifications,PushData, PushStorage) {
 
     $scope.news = [];
     $scope.storage = '';
 
-       $scope.scheduleDelayedNotification = function () {
-      var now = new Date().getTime();
-      var _10SecondsFromNow = new Date(now + 10 * 1000);
-      
-      $cordovaLocalNotification.schedule({
-        id: 1,
-        title: 'Title here',
-        text: 'Text here',
-        at: _10SecondsFromNow
-      }).then(function (result) {
-        // ...
-      });
-    };
-
-    $scope.scheduleDelayedNotification();
 
     $scope.loading = $ionicLoading.show({
       template: '<i class="icon ion-loading-a"></i> Carregando',
@@ -62,7 +47,7 @@ angular.module('mobionicApp.controllers', [])
     $scope.link = 'http://www.gran.com.br/';
     $scope.message = 'Visite o site do Clube Gran São João www.gran.com.br';
     $scope.image = 'http://www.dcoutto.com.br/servidor/psd/logo.png';
-    console.log($scope.ativoimg);
+
             $ionicActionSheet.show({
                 buttons: [
                     { text: 'Facebook' },
@@ -219,7 +204,7 @@ angular.module('mobionicApp.controllers', [])
 .controller('FotosCtrl', function($scope, $stateParams, $state, $ionicLoading, $ionicActionSheet, FotosData, FotosStorage, $document) {
 
     $scope.id = $stateParams.galeriaId.replace(':','');
-    console.log($scope.id)
+
     $scope.fotos = [];
 
     $scope.loading = $ionicLoading.show({
@@ -240,7 +225,6 @@ angular.module('mobionicApp.controllers', [])
                 }
     });
  $scope.goFotos = function(aid){
-    console.log(aid);
             $state.go('fotos', {id: aid},{reload: true});
     }  
     $scope.abre_foto = function (passedEventObject, thumbid) {
@@ -544,7 +528,7 @@ angular.module('mobionicApp.controllers', [])
 })
 
 // Contact Controller
-.controller('MapCtrl', function($scope, $ionicLoading, $timeout,$interval) {
+.controller('MapCtrl', function($scope, $ionicLoading, $timeout,$interval,$state) {
 
 $scope.rota = false;
    $scope.finding = function(route) {
@@ -627,11 +611,10 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
                  
                 });
                            var testador = $interval(function(){
-                            console.log('testando')
                                navigator.geolocation.getCurrentPosition(function(){
                                 $interval.cancel(testador);
                                 $ionicLoading.hide();
-                                $hide.go('map',{reload: true});
+                                $state.reload();
                                });
                           },2000)  
                     }
@@ -699,9 +682,10 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
 
 })
 // Posts Controller
-.controller('DestaquesCtrl', function($scope, $ionicLoading, $interval, $location, $ionicSlideBoxDelegate, DestaquesData, DestaquesStorage, ImgCache) {
+.controller('DestaquesCtrl', function($scope, $ionicLoading, $interval, $location, $ionicSlideBoxDelegate, DestaquesData, DestaquesStorage, ImgCache, PushData, PushStorage) {
   $scope.intervalo = 4000;
     $scope.destaques = [];
+     $scope.notificacoes = [];
     $scope.storage = '';
 
     DestaquesData.async().then(
@@ -743,9 +727,7 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
             },$scope.intervalo)
         }
     }
-
-
-           
+          
 })
 
 // Post Controller
@@ -875,7 +857,7 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
         
     $scope.subject = $scope.post.titulo;
     $scope.message = $scope.post.titulo;
-    $scope.link = 'http://www.gran.com.br/site/?pg=noticia&id=61'+$scope.post.id;
+    $scope.link = 'http://www.gran.com.br/site/?pg=noticia&id='+$scope.post.id;
     $scope.post.img = encodeURI($scope.post.img);
   
 
@@ -990,11 +972,11 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
     $scope.evento = AgendaData.get($stateParams.eventoId);
     $scope.evento.eventoId = $stateParams.eventoId;
 
-    $scope.sharePost = function() {
+      $scope.sharePost = function() {
         
     $scope.subject = $scope.evento.titulo;
     $scope.message = $scope.evento.titulo;
-    $scope.link = 'http://www.gran.com.br/site/?pg=eventos';
+    $scope.link = 'http://www.gran.com.br/site/?pg=evento&id='+$scope.evento.id;
     $scope.evento.img = encodeURI($scope.evento.img);
   
 
@@ -1034,16 +1016,16 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
      
 
         $scope.shareNative = function() {
-            window.plugins.socialsharing.share($scope.message, $scope.subject,  $scope.evento.img, $scope.link);
+            window.plugins.socialsharing.share($scope.message, $scope.subject,$scope.evento.img, $scope.link);
         }
          $scope.shareToFacebook  = function() {
-            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject,  $scope.evento.img, $scope.link);
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject,$scope.evento.img, $scope.link);
         }
         $scope.shareToTwitter  = function() {
             window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
         }
         $scope.shareToWhatsApp  = function() {
-            window.plugins.socialsharing.shareViaWhatsApp($scope.evento.situlo,  $scope.evento.img, $scope.link);
+            window.plugins.socialsharing.shareViaWhatsApp($scope.evento.message,$scope.evento.img, $scope.link);
         }
         $scope.shareViaEmail  = function() {
             window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
@@ -1331,7 +1313,6 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
     $scope.jogos = [];
     $scope.storage = '';
     $scope.datahoje = currentDate;
-    console.log($scope.datahoje);
 
 
     $scope.campeonatos = [
@@ -1352,7 +1333,6 @@ $scope.changedValue=function(item){
         $scope.campeonatoSelect = 100
         $scope.getFilter()
     }  
-     console.log($scope.campeonatoSelect)
     }  
 
      $scope.getFilter = function() {
