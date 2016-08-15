@@ -86,7 +86,7 @@ angular.module('mobionicApp.controllers', [])
             window.plugins.socialsharing.share($scope.message, $scope.subject, $scope.image, $scope.link);
         }
          $scope.shareToFacebook  = function() {
-            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, null, $scope.link);
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, $scope.image, $scope.link);
         }
         $scope.shareToTwitter  = function() {
             window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
@@ -95,7 +95,7 @@ angular.module('mobionicApp.controllers', [])
             window.plugins.socialsharing.shareViaWhatsApp($scope.message, $scope.image, $scope.link);
         }
         $scope.shareViaEmail  = function() {
-            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
+            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], $scope.image);
         }
 
 
@@ -287,19 +287,19 @@ angular.module('mobionicApp.controllers', [])
      
 
         $scope.shareNative = function() {
-            window.plugins.socialsharing.share($scope.message, $scope.subject, null, $scope.link);
+            window.plugins.socialsharing.share($scope.message, $scope.subject, $scope.image, $scope.link);
         }
          $scope.shareToFacebook  = function() {
-            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, null, $scope.link);
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, $scope.image, $scope.link);
         }
         $scope.shareToTwitter  = function() {
-            window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
+            window.plugins.socialsharing.shareViaTwitter($scope.subject, $scope.image, $scope.link);
         }
         $scope.shareToWhatsApp  = function() {
-            window.plugins.socialsharing.shareViaWhatsApp($scope.post.Titulo, null, $scope.link);
+            window.plugins.socialsharing.shareViaWhatsApp($scope.post.Titulo, $scope.image, $scope.link);
         }
         $scope.shareViaEmail  = function() {
-            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
+            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, null, null, null, $scope.image);
         }
     $scope.loadURL = function (url) {
         window.open(url,'_system');
@@ -467,19 +467,19 @@ angular.module('mobionicApp.controllers', [])
      
 
         $scope.shareNative = function() {
-            window.plugins.socialsharing.share($scope.message, $scope.subject, null, $scope.link);
+            window.plugins.socialsharing.share($scope.message, $scope.subject, $scope.image, $scope.link);
         }
          $scope.shareToFacebook  = function() {
-            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, null, $scope.link);
+            window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, $scope.image, $scope.link);
         }
         $scope.shareToTwitter  = function() {
-            window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
+            window.plugins.socialsharing.shareViaTwitter($scope.subject, $scope.image, $scope.link);
         }
         $scope.shareToWhatsApp  = function() {
-            window.plugins.socialsharing.shareViaWhatsApp($scope.post.Titulo, null, $scope.link);
+            window.plugins.socialsharing.shareViaWhatsApp($scope.post.Titulo, $scope.image, $scope.link);
         }
         $scope.shareViaEmail  = function() {
-            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
+            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, null, null, null, null);
         }
 
 
@@ -790,13 +790,13 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
             window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject, $scope.image, $scope.link);
         }
         $scope.shareToTwitter  = function() {
-            window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
+            window.plugins.socialsharing.shareViaTwitter($scope.subject, $scope.image, $scope.link);
         }
         $scope.shareToWhatsApp  = function() {
             window.plugins.socialsharing.shareViaWhatsApp($scope.post.Titulo, $scope.image, $scope.link);
         }
         $scope.shareViaEmail  = function() {
-            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
+            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], $scope.image);
         }
 
 })
@@ -908,13 +908,13 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
             window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint($scope.subject,$scope.post.img, $scope.link);
         }
         $scope.shareToTwitter  = function() {
-            window.plugins.socialsharing.shareViaTwitter($scope.subject, null, $scope.link);
+            window.plugins.socialsharing.shareViaTwitter($scope.subject, $scope.image, $scope.link);
         }
         $scope.shareToWhatsApp  = function() {
             window.plugins.socialsharing.shareViaWhatsApp($scope.post.message,$scope.post.img, $scope.link);
         }
         $scope.shareViaEmail  = function() {
-            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
+            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], $scope.image);
         }
 
 
@@ -1033,7 +1033,7 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
             window.plugins.socialsharing.shareViaWhatsApp($scope.evento.message,$scope.evento.img, $scope.link);
         }
         $scope.shareViaEmail  = function() {
-            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
+            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], $scope.image);
         }
 
 
@@ -1119,7 +1119,7 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
             window.plugins.socialsharing.shareViaWhatsApp($scope.post.titulo, $scope.image, $scope.link);
         }
         $scope.shareViaEmail  = function() {
-            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], null);
+            window.plugins.socialsharing.shareViaEmail($scope.message, $scope.subject, [], [], [], $scope.image);
         }
 
 }])
