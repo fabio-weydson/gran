@@ -65,7 +65,7 @@
   <gap:plugin name="nl.x-services.plugins.socialsharing" source="pgb" version="4.3.8"/>
   <gap:plugin name="nl.x-services.plugins.toast" source="pgb" version="2.0.2"/>
   <gap:plugin name="ionic-plugin-keyboard" source="npm"/>
-  <gap:plugin name="phonegap-plugin-push" source="npm">
+  <gap:plugin name="phonegap-plugin-push" source="pgb">
       <gap:plugin name="com.plugins.shortcut" />
     <param name="SENDER_ID" value="309843072637"/>
   </gap:plugin>
