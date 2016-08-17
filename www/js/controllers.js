@@ -50,29 +50,14 @@ angular.module('mobionicApp.controllers', [])
 
             $ionicActionSheet.show({
                 buttons: [
-                    { text: 'Facebook' },
-                    { text: 'Twitter' },
-                    { text: 'Whatsapp' },
-                    { text: 'Email' },
-                    { text: 'Outros' }
+                    { text: 'Escolher aplicativo' }
                 ],
                 titleText: 'Compartilhar',
                 cancelText: 'Cancelar',
                 buttonClicked: function(index) {
                     switch(index) {
                         case 0:
-                            $scope.shareToFacebook();
-                            break;
-                        case 1:
-                            $scope.shareToTwitter();
-                            break;
-                        case 2:
-                            $scope.shareToWhatsApp();
-                            break;
-                        case 3:
-                            $scope.shareViaEmail();
-                            break;
-                        case 4:
+                          
                             $scope.shareNative();
                             break;
                     }
@@ -253,30 +238,14 @@ angular.module('mobionicApp.controllers', [])
     $scope.image = $scope.ativoimg;
 
             $ionicActionSheet.show({
-                buttons: [
-                    { text: 'Facebook' },
-                    { text: 'Twitter' },
-                    { text: 'Whatsapp' },
-                    { text: 'Email' },
-                    { text: 'Outros' }
+                b { text: 'Escolher aplicativo' }
                 ],
                 titleText: 'Compartilhar',
                 cancelText: 'Cancelar',
                 buttonClicked: function(index) {
                     switch(index) {
                         case 0:
-                            $scope.shareToFacebook();
-                            break;
-                        case 1:
-                            $scope.shareToTwitter();
-                            break;
-                        case 2:
-                            $scope.shareToWhatsApp();
-                            break;
-                        case 3:
-                            $scope.shareViaEmail();
-                            break;
-                        case 4:
+                        
                             $scope.shareNative();
                             break;
                     }
@@ -434,29 +403,15 @@ angular.module('mobionicApp.controllers', [])
 
             $ionicActionSheet.show({
                 buttons: [
-                    { text: 'Facebook' },
-                    { text: 'Twitter' },
-                    { text: 'Whatsapp' },
-                    { text: 'Email' },
-                    { text: 'Outros' }
+                 
+                    { text: 'Escolher aplicativo' }
                 ],
                 titleText: 'Compartilhar',
                 cancelText: 'Cancelar',
                 buttonClicked: function(index) {
                     switch(index) {
                         case 0:
-                            $scope.shareToFacebook();
-                            break;
-                        case 1:
-                            $scope.shareToTwitter();
-                            break;
-                        case 2:
-                            $scope.shareToWhatsApp();
-                            break;
-                        case 3:
-                            $scope.shareViaEmail();
-                            break;
-                        case 4:
+                       
                             $scope.shareNative();
                             break;
                     }
@@ -751,29 +706,15 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
 
             $ionicActionSheet.show({
                 buttons: [
-                    { text: 'Facebook' },
-                    { text: 'Twitter' },
-                    { text: 'Whatsapp' },
-                    { text: 'Email' },
-                    { text: 'Outros' }
+                  
+                    { text: 'Escolher aplicativo' }
                 ],
                 titleText: 'Compartilhar',
                 cancelText: 'Cancelar',
                 buttonClicked: function(index) {
                     switch(index) {
                         case 0:
-                            $scope.shareToFacebook();
-                            break;
-                        case 1:
-                            $scope.shareToTwitter();
-                            break;
-                        case 2:
-                            $scope.shareToWhatsApp();
-                            break;
-                        case 3:
-                            $scope.shareViaEmail();
-                            break;
-                        case 4:
+                        
                             $scope.shareNative();
                             break;
                     }
@@ -869,29 +810,13 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
 
             $ionicActionSheet.show({
                 buttons: [
-                    { text: 'Facebook' },
-                    { text: 'Twitter' },
-                    { text: 'Whatsapp' },
-                    { text: 'Email' },
-                    { text: 'Outros' }
+                    { text: 'Escolher aplicativo' }
                 ],
                 titleText: 'Compartilhar',
                 cancelText: 'Cancelar',
                 buttonClicked: function(index) {
                     switch(index) {
                         case 0:
-                            $scope.shareToFacebook();
-                            break;
-                        case 1:
-                            $scope.shareToTwitter();
-                            break;
-                        case 2:
-                            $scope.shareToWhatsApp();
-                            break;
-                        case 3:
-                            $scope.shareViaEmail();
-                            break;
-                        case 4:
                             $scope.shareNative();
                             break;
                     }
@@ -988,29 +913,14 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
 
             $ionicActionSheet.show({
                 buttons: [
-                    { text: 'Facebook' },
-                    { text: 'Twitter' },
-                    { text: 'Whatsapp' },
-                    { text: 'Email' },
-                    { text: 'Outros' }
+                    { text: 'Escolher aplicativo' }
                 ],
                 titleText: 'Compartilhar',
                 cancelText: 'Cancelar',
                 buttonClicked: function(index) {
                     switch(index) {
                         case 0:
-                            $scope.shareToFacebook();
-                            break;
-                        case 1:
-                            $scope.shareToTwitter();
-                            break;
-                        case 2:
-                            $scope.shareToWhatsApp();
-                            break;
-                        case 3:
-                            $scope.shareViaEmail();
-                            break;
-                        case 4:
+                        
                             $scope.shareNative();
                             break;
                     }
@@ -1074,29 +984,14 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
 
             $ionicActionSheet.show({
                 buttons: [
-                    { text: 'Facebook' },
-                    { text: 'Twitter' },
-                    { text: 'Whatsapp' },
-                    { text: 'Email' },
-                    { text: 'Outros' }
+                 { text: 'Escolher aplicativo' }
                 ],
                 titleText: 'Compartilhar',
                 cancelText: 'Cancelar',
                 buttonClicked: function(index) {
                     switch(index) {
                         case 0:
-                            $scope.shareToFacebook();
-                            break;
-                        case 1:
-                            $scope.shareToTwitter();
-                            break;
-                        case 2:
-                            $scope.shareToWhatsApp();
-                            break;
-                        case 3:
-                            $scope.shareViaEmail();
-                            break;
-                        case 4:
+                         
                             $scope.shareNative();
                             break;
                     }
@@ -1176,30 +1071,14 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
 
     $ionicActionSheet.show({
                 buttons: [
-                    { text: 'Facebook' },
-                    { text: 'Twitter' },
-                    { text: 'Whatsapp' },
-                    { text: 'Email' },
-                    { text: 'Outros' }
+                    { text: 'Escolher aplicativo' }
                 ],
                 titleText: 'Compartilhar',
                 cancelText: 'Cancelar',
                 buttonClicked: function(index) {
                     switch(index) {
                         case 0:
-                            $scope.shareToFacebook();
-                            break;
-                        case 1:
-                            $scope.shareToTwitter();
-                            break;
-                        case 2:
-                            $scope.shareToWhatsApp();
-                            break;
-                        case 3:
-                            $scope.shareViaEmail();
-                            break;
-                        case 4:
-                            $scope.shareNative();
+                          
                             break;
                     }
                     return true;
