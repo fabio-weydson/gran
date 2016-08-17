@@ -238,7 +238,8 @@ angular.module('mobionicApp.controllers', [])
     $scope.image = $scope.ativoimg;
 
             $ionicActionSheet.show({
-                b { text: 'Escolher aplicativo' }
+                 buttons: [
+                 { text: 'Escolher aplicativo' }
                 ],
                 titleText: 'Compartilhar',
                 cancelText: 'Cancelar',
