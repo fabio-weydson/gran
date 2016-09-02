@@ -1206,7 +1206,8 @@ $scope.end = 'Rua Dr. Antonio Frederico Ozanan, 111, Parque Real, Limeira-SP';
           { id:'3', name:'Sintético Veteranos' },
           { id:'4', name:'Misto Grama' },
           { id:'5', name:'Veteranos Grama' },
-        { id:'6', name:'Society' }
+        { id:'6', name:'Society' },
+        { id:'7', name:'Copinha' }
     ];
     
 $scope.campeonatoSelect = false;

@@ -22,14 +22,14 @@ angular.module('mobionicApp', ['ionic','ionic.service.core', 'mobionicApp.contro
     }
     
     if (!localStorage.getItem('shortcut')) {
-    window.plugins.Shortcut.CreateShortcut("Clube Gran São João", successfunc, failfunc);
-    localStorage.setItem('shortcut', true);
-    function successfunc(){
-      console.log('Um atalho foi adicionado a sua tela inicial.')
-    }
-    function failfunc(){
-       console.log('Falha ao criar atalho. Adicione manualmente.')
-    }
+    // window.plugins.Shortcut.CreateShortcut("Clube Gran São João", successfunc, failfunc);
+    // localStorage.setItem('shortcut', true);
+    // function successfunc(){
+    //   console.log('Um atalho foi adicionado a sua tela inicial.')
+    // }
+    // function failfunc(){
+    //    console.log('Falha ao criar atalho. Adicione manualmente.')
+    // }
     }
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
